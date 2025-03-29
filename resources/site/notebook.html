@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}{{ notebook.title }}{% endblock %}
+
+{% block content %}
+<main class="container notebook-content">
+    {{ notebook_content|safe }}
+</main>
+{% endblock %}

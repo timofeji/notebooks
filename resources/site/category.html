@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category }}{% endblock %}
+
+{% block content %}
+<main class="container">
+    <h1>{{ category }}</h1>
+    <ul class="post-list">
+        {% for notebook in notebooks %}
+        <li><a href="{{ notebook.url }}" class="post-link">{{ notebook.title }}</a></li>
+        {% endfor %}
+    </ul>
+</main>
+{% endblock %}
