@@ -9,7 +9,7 @@ import nbformat
 
 ROOT_DIR = Path('./src')  # The root directory to search for notebooks
 OUTPUT_DIR = Path('./build')  # Directory to store the generated blog posts
-TEMPLATE_DIR = Path('./resources/')  # Path to the custom nbconvert template
+RESOURCES_DIR = Path('./resources')  # Path to the custom nbconvert template
 CSS_FILE = Path('./resources/styles.css')  # Path to the CSS file
 
 def search_notebooks(root_dir):
@@ -27,30 +27,19 @@ def search_notebooks(root_dir):
 
 def convert_notebook(n_src_file, output_dir, template_dir):
     """Convert a notebook to HTML using nbconvert."""
+    template = 'template_voidptr'
 
-    # Run the conversion
-    build_cmd = f'python -m nbconvert {str(n_src_file)} --to html'
-    subprocess.run(build_cmd, check=True)
+    subprocess.run([
+                    "python", "-m", "nbconvert", n_src_file, "--to", "html",
+                    f'--TemplateExporter.extra_template_basedirs={template_dir}',
+                    f'--template={template}'
+                    ])
 
     output_file = f"{n_src_file.parent / n_src_file.stem}.html"
     shutil.move(output_file , f'{output_dir / n_src_file.stem}.html')
 
     return output_file
 
-def render_notebook_to_html(notebook_path):
-    try:
-        with open(notebook_path, 'r', encoding='utf-8') as f:
-            notebook_content = nbformat.read(f, as_version=4)
-        
-        html_exporter = HTMLExporter()
-        body, _ = html_exporter.from_notebook_node(notebook_content)
-        return body
-    except nbformat.reader.NotJSONError:
-        print(f"Warning: {notebook_path} is not a valid notebook (NotJSONError). Skipping this file.")
-        return ""
-    except Exception as e:
-        print(f"Error: Failed to process {notebook_path}. Reason: {str(e)}")
-        return ""
 
 def generate_categories(category, notebooks, output_dir):
     """Generate a category page with links to notebooks."""
@@ -518,8 +507,8 @@ def main():
         category_output_dir = OUTPUT_DIR / category
         category_output_dir.mkdir(parents=True, exist_ok=True)
         
-        # for n in notebooks:
-        #     convert_notebook(n, category_output_dir, TEMPLATE_DIR)
+        for n in notebooks:
+            convert_notebook(n, category_output_dir, RESOURCES_DIR)
         
     
    
