@@ -139,16 +139,16 @@ def generate_homepage(notebooks_by_category, output_dir):
             break
 
 
-    # Add categories
-    for category in notebooks_by_category.keys():
-        category_name = str(category) if category != Path('.') else "General"
-        cat_str = str(category) if category != Path('.') else "index"
-        html_content += f'''
-                    <div class="category-card">
-                        <h3>{category_name.replace('_', ' ').title()}</h3>
-                        <p>{len(notebooks_by_category[category])} projects</p>
-                        <a href="{cat_str}.html" class="btn btn-outline">Explore</a>
-                    </div>'''
+    # # Add categories
+    # for category in notebooks_by_category.keys():
+    #     category_name = str(category) if category != Path('.') else "General"
+    #     cat_str = str(category) if category != Path('.') else "index"
+    #     html_content += f'''
+    #                 <div class="category-card">
+    #                     <h3>{category_name.replace('_', ' ').title()}</h3>
+    #                     <p>{len(notebooks_by_category[category])} projects</p>
+    #                     <a href="{cat_str}.html" class="btn btn-outline">Explore</a>
+    #                 </div>'''
 
     # Footer
     html_content += '''

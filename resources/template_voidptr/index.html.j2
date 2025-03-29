@@ -40,7 +40,7 @@
 {% endfor %}
 
 {% block notebook_css %}
-{{ resources.include_css("static/style.css") }}
+{{ resources.include_css("style.css") }}
 <style type="text/css">
 /* Overrides of notebook CSS for static HTML export */
 body {
@@ -106,8 +106,8 @@ div#notebook-container{
         </nav>
     </div>
 </header>
-
-
+    <br>
+    <br>
     <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 {% endblock body_header %}
