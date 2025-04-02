@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Publications{% endblock %}
+
+{% block content %}
+<main class="container">
+    <section class="publications-section">
+        <h2>Publications</h2>
+        
+        <div class="publication-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="journal">Journal Articles</button>
+            <button class="filter-btn" data-filter="conference">Conference Papers</button>
+            <button class="filter-btn" data-filter="preprint">Preprints</button>
+        </div>
+        
+        <div class="publications-list">
+            {% for pub in publications %}
+            <div class="publication-item" data-type="{{ pub.type }}">
+                <h3>{{ pub.title }}</h3>
+                <p class="authors">{{ pub.authors }}</p>
+                <p class="venue">{{ pub.venue }}{% if pub.year %} ({{ pub.year }}){% endif %}</p>
+                <div class="publication-links">
+                    {% if pub.pdf_url %}
+                    <a href="{{ pub.pdf_url }}" class="pub-link">PDF</a>
+                    {% endif %}
+                    {% if pub.doi %}
+                    <a href="https://doi.org/{{ pub.doi }}" class="pub-link">DOI</a>
+                    {% endif %}
+                    {% if pub.code_url %}
+                    <a href="{{ pub.code_url }}" class="pub-link">Code</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

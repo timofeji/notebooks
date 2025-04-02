@@ -858,3 +858,49 @@ footer::before {
   left: 0;
   right: 0;
 }
+
+blockquote {
+  background-color: var(--neutral-200);
+  border-left: 4px solid var(--earth-light);
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  font-style: italic;
+  color: var(--earth-deep);
+  position: relative;
+}
+
+blockquote p {
+  margin-bottom: 0.5em;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote::before {
+  content: '"';
+  font-size: 3em;
+  position: absolute;
+  left: 0.1em;
+  top: -0.2em;
+  color: #ddd;
+  font-family: Georgia, serif;
+}
+
+blockquote cite {
+  display: block;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+  text-align: right;
+  font-style: normal;
+  color: var(--earth-medium);
+}
+
+.definition-properties {
+  border-left: 4px solid var(--earth-light);
+  left: 0.1em;
+}
+
+ul {
+  left: 0.1em;
+}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<main class="container">
+    <section class="about-section">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="profile-image">
+                <img src="/api/placeholder/300/300" alt="Timofej Jermolaev">
+            </div>
+            <div class="bio">
+                <p>Hi, I'm Timofej Jermolaev, a researcher and developer focused on [your specialties].</p>
+                <p>I'm passionate about using technology to solve complex problems and sharing my knowledge with others.</p>
+                <p>My background includes experience in [relevant fields], and I'm currently working on [current projects/research].</p>
+                <h3>Education</h3>
+                <ul>
+                    <li>Ph.D. in [Field], [University], [Year]</li>
+                    <li>M.S. in [Field], [University], [Year]</li>
+                    <li>B.S. in [Field], [University], [Year]</li>
+                </ul>
+                <h3>Skills</h3>
+                <div class="skills-grid">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Research</span>
+                    <span class="skill-tag">Visualization</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

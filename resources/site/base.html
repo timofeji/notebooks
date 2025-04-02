@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} - Timofej Jermolaev</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for_static('styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="script.js" defer></script>
+    <script src="{{ url_for_static('script.js') }}" defer></script>
 </head>
 <body>
     <header>
@@ -14,10 +14,10 @@
             <h1>Timofej Jermolaev</h1>
             <nav>
                 <ul>
-                    <li><a href="index.html"{% if active_page == 'home' %} class="active"{% endif %}>Home</a></li>
-                    <li><a href="publications.html"{% if active_page == 'publications' %} class="active"{% endif %}>Publications</a></li>
-                    <li><a href="portfolio.html"{% if active_page == 'portfolio' %} class="active"{% endif %}>Portfolio</a></li>
-                    <li><a href="about.html"{% if active_page == 'about' %} class="active"{% endif %}>About</a></li>
+                    <li><a href="{{ url_for_page('index.html') }}"{% if active_page == 'home' %} class="active"{% endif %}>Home</a></li>
+                    <li><a href="{{ url_for_page('publications.html') }}"{% if active_page == 'publications' %} class="active"{% endif %}>Publications</a></li>
+                    <li><a href="{{ url_for_page('portfolio.html') }}"{% if active_page == 'portfolio' %} class="active"{% endif %}>Portfolio</a></li>
+                    <li><a href="{{ url_for_page('about.html') }}"{% if active_page == 'about' %} class="active"{% endif %}>About</a></li>
                 </ul>
             </nav>
         </div>

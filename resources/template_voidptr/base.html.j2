@@ -44,11 +44,16 @@
 {% block output_prompt %}
 {% endblock output_prompt %}
 
+
+
 {% block input %}
 <div class="inner_cell">
+    {%- set is_figure = "figure" in cell.metadata.get("tags", []) -%}
+    {% if not is_figure %}
     <div class="input_area">
 {{ cell.source | highlight_code(metadata=cell.metadata) | clean_html }}
     </div>
+    {% endif %}
 </div>
 {%- endblock input %}
 

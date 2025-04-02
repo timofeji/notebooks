@@ -63,6 +63,11 @@
   /* Layout */
   --container: 1200px;
   --header-height: 70px;
+
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Base Reset */
@@ -86,6 +91,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(to bottom, var(--neutral-100), var(--bg));
+}
+
+main {
+  flex: 1; /* This pushes the footer to the bottom */
 }
 
 img {
@@ -499,7 +508,7 @@ nav a.active::after {
   color: var(--earth-medium);
   font-weight: 600;
   transition: color var(--transition-fast);
-  margin-top: auto;
+  margin-left: auto; /* Pushes it to the right */
   font-family: var(--font-sans);
   font-size: 0.875rem;
 }
