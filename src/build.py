@@ -126,9 +126,31 @@ def generate_portfolio_page(output_dir):
 def main():
     if not OUTPUT_DIR.exists():
         OUTPUT_DIR.mkdir(parents=True)
+
+    OUTPUT_STYLES_DIR = OUTPUT_DIR / 'styles'
+    if not OUTPUT_STYLES_DIR.exists():
+        OUTPUT_STYLES_DIR.mkdir(parents=True)
+
     
-    # Copy static assets
-    shutil.copy(CSS_FILE, OUTPUT_DIR / CSS_FILE.name)
+    OUTPUT_SCRIPTS_DIR = OUTPUT_DIR / 'scripts'
+    if not OUTPUT_SCRIPTS_DIR.exists():
+        OUTPUT_SCRIPTS_DIR.mkdir(parents=True)
+ 
+    
+    for filename in os.listdir(STYLE_DIR):
+        if filename.endswith(".css"): 
+            src_path = os.path.join(STYLE_DIR, filename)
+            print(src_path)
+            dest_path = os.path.join(OUTPUT_STYLES_DIR, filename)
+            shutil.copy2(src_path, dest_path) 
+
+    for filename in os.listdir(SCRIPTS_DIR):
+        if filename.endswith(".js"): 
+            src_path = os.path.join(SCRIPTS_DIR, filename)
+            dest_path = os.path.join(OUTPUT_SCRIPTS_DIR, filename)
+            shutil.copy2(src_path, dest_path) 
+
+
 
     notebooks_by_category = search_notebooks(NOTEBOOK_DIR)
     for category, notebooks in notebooks_by_category.items():

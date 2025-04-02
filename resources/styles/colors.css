@@ -1,14 +1,13 @@
 :root {
-  /* Color Palette - Solarpunk-inspired: living earth and sustainable technology */
-  --earth-deep: #2c3b2d;
-  --earth-medium: #3a5a40;
-  --earth-light: #588157;
-  --solar-green: #a3b18a;
-  --solar-glow: #dad7cd;
-  --amber-gold: #e9c46a;
-  --leaf-highlight: #80b192;
-  --terracotta: #bb5a41;
-  --sunset-orange: #e76f51;
+  --accent-dark: #2c3b2d;
+  --accent-gray: #3a5a40;
+  --accent-light: #588157;
+  --accent-light-2: #a3b18a;
+  --accent-white: #dad7cd;
+  --accent-active: #e9c46a;
+  --accent-highlight: #80b192;
+  --accent-alt: #bb5a41;
+  --accent-alt2: #e76f51;
   --neutral-100: #f6f7f4;
   --neutral-200: #e5e8e0;
   --neutral-300: #ccd5c4;

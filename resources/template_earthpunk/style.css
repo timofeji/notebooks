@@ -1,14 +1,14 @@
 :root {
   /* Color Palette - Solarpunk-inspired: living earth and sustainable technology */
-  --earth-deep: #2c3b2d;
-  --earth-medium: #3a5a40;
-  --earth-light: #588157;
-  --solar-green: #a3b18a;
-  --solar-glow: #dad7cd;
-  --amber-gold: #e9c46a;
-  --leaf-highlight: #80b192;
-  --terracotta: #bb5a41;
-  --sunset-orange: #e76f51;
+  --accent-dark: #2c3b2d;
+  --accent-gray: #3a5a40;
+  --accent-light: #588157;
+  --accent-light-2: #a3b18a;
+  --accent-white: #dad7cd;
+  --accent-active: #e9c46a;
+  --accent-highlight: #80b192;
+  --accent-alt: #bb5a41;
+  --accent-alt2: #e76f51;
   --neutral-100: #f6f7f4;
   --neutral-200: #e5e8e0;
   --neutral-300: #ccd5c4;
@@ -95,14 +95,14 @@ img {
 }
 
 a {
-  color: var(--earth-medium);
+  color: var(--accent-gray);
   text-decoration: none;
   transition: color var(--transition-fast);
   position: relative;
 }
 
 a:hover {
-  color: var(--leaf-highlight);
+  color: var(--accent-highlight);
 }
 
 a:after {
@@ -112,7 +112,7 @@ a:after {
   height: 1px;
   bottom: -2px;
   left: 0;
-  background: linear-gradient(90deg, var(--earth-medium), transparent);
+  background: linear-gradient(90deg, var(--accent-gray), transparent);
   transition: width var(--transition);
 }
 
@@ -125,7 +125,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--space-4);
   font-weight: 600;
   line-height: 1.3;
-  color: var(--earth-deep);
+  color: var(--accent-dark);
   font-family: var(--font-sans);
   letter-spacing: -0.01em;
 }
@@ -196,7 +196,7 @@ header .container {
 header h1 {
   font-size: 1.75rem;
   margin: 0;
-  background: linear-gradient(135deg, var(--earth-medium), var(--earth-light));
+  background: linear-gradient(135deg, var(--accent-gray), var(--accent-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -223,11 +223,11 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--earth-medium);
+  color: var(--accent-gray);
 }
 
 nav a.active {
-  color: var(--earth-medium);
+  color: var(--accent-gray);
 }
 
 nav a.active::after {
@@ -237,14 +237,14 @@ nav a.active::after {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(to right, var(--earth-medium), var(--solar-green));
+  background: linear-gradient(to right, var(--accent-gray), var(--accent-light-2));
   border-radius: var(--radius-full);
 }
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, var(--earth-light), var(--solar-green));
-  color: var(--earth-deep);
+  background: linear-gradient(135deg, var(--accent-light), var(--accent-light-2));
+  color: var(--accent-dark);
   padding: var(--space-16) 0;
   position: relative;
   overflow: hidden;
@@ -282,7 +282,7 @@ nav a.active::after {
 .hero h2 {
   font-size: 3.5rem;
   margin-bottom: var(--space-6);
-  color: var(--earth-deep);
+  color: var(--accent-dark);
   font-family: var(--font-sans);
   position: relative;
 }
@@ -295,7 +295,7 @@ nav a.active::after {
   bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(90deg, var(--earth-deep), var(--earth-light));
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent-light));
   border-radius: var(--radius);
 }
 
@@ -351,13 +351,13 @@ nav a.active::after {
 }
 
 .btn-primary {
-  background-color: var(--earth-medium);
+  background-color: var(--accent-gray);
   color: white;
   box-shadow: 0 4px 14px rgba(58, 90, 64, 0.4);
 }
 
 .btn-primary:hover, .btn-primary:focus {
-  background-color: var(--earth-light);
+  background-color: var(--accent-light);
   box-shadow: var(--glow-earth);
   color: white;
   transform: translateY(-1px);
@@ -369,7 +369,7 @@ nav a.active::after {
 
 .btn-secondary {
   background-color: rgba(255, 255, 255, 0.9);
-  color: var(--earth-deep);
+  color: var(--accent-dark);
   box-shadow: 0 4px 10px rgba(44, 59, 45, 0.1);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -387,13 +387,13 @@ nav a.active::after {
 
 .btn-outline {
   background-color: transparent;
-  border: 1px solid var(--earth-medium);
-  color: var(--earth-medium);
+  border: 1px solid var(--accent-gray);
+  color: var(--accent-gray);
 }
 
 .btn-outline:hover, .btn-outline:focus {
   background-color: rgba(58, 90, 64, 0.05);
-  color: var(--earth-light);
+  color: var(--accent-light);
   transform: translateY(-1px);
   box-shadow: var(--glow-earth);
 }
@@ -466,12 +466,12 @@ nav a.active::after {
 }
 
 .post-card h3 a, .portfolio-card h3 a {
-  color: var(--earth-deep);
+  color: var(--accent-dark);
   transition: color var(--transition-fast);
 }
 
 .post-card h3 a:hover, .portfolio-card h3 a:hover {
-  color: var(--earth-medium);
+  color: var(--accent-gray);
 }
 
 .post-excerpt, .portfolio-card p {
@@ -483,7 +483,7 @@ nav a.active::after {
 .category-tag, .tag {
   display: inline-block;
   background-color: rgba(58, 90, 64, 0.1);
-  color: var(--earth-medium);
+  color: var(--accent-gray);
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-full);
   font-size: 0.75rem;
@@ -496,7 +496,7 @@ nav a.active::after {
 .read-more {
   display: inline-flex;
   align-items: center;
-  color: var(--earth-medium);
+  color: var(--accent-gray);
   font-weight: 600;
   transition: color var(--transition-fast);
   margin-top: auto;
@@ -511,7 +511,7 @@ nav a.active::after {
 }
 
 .read-more:hover {
-  color: var(--leaf-highlight);
+  color: var(--accent-highlight);
 }
 
 .read-more:hover:after {
@@ -546,7 +546,7 @@ nav a.active::after {
 
 .tag {
   background-color: rgba(163, 177, 138, 0.2);
-  color: var(--earth-medium);
+  color: var(--accent-gray);
   border: 1px solid rgba(88, 129, 87, 0.1);
 }
 
@@ -560,7 +560,7 @@ nav a.active::after {
 .portfolio-filter {
   background-color: transparent;
   border: 1px solid rgba(88, 129, 87, 0.2);
-  color: var(--earth-deep);
+  color: var(--accent-dark);
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-full);
   font-weight: 500;
@@ -571,13 +571,13 @@ nav a.active::after {
 }
 
 .portfolio-filter:hover {
-  border-color: var(--earth-medium);
-  color: var(--earth-medium);
+  border-color: var(--accent-gray);
+  color: var(--accent-gray);
 }
 
 .portfolio-filter.active {
-  background-color: var(--earth-medium);
-  border-color: var(--earth-medium);
+  background-color: var(--accent-gray);
+  border-color: var(--accent-gray);
   color: white;
   box-shadow: var(--glow-earth);
 }
@@ -636,7 +636,7 @@ nav a.active::after {
   left: var(--space-6);
   right: var(--space-6);
   bottom: var(--space-6);
-  border: 2px solid var(--earth-medium);
+  border: 2px solid var(--accent-gray);
   border-radius: var(--radius-sm);
   z-index: -1;
 }
@@ -660,7 +660,7 @@ nav a.active::after {
   height: 3px;
   bottom: -10px;
   left: 0;
-  background: linear-gradient(90deg, var(--earth-medium), var(--leaf-highlight));
+  background: linear-gradient(90deg, var(--accent-gray), var(--accent-highlight));
   border-radius: var(--radius);
 }
 
@@ -683,7 +683,7 @@ nav a.active::after {
   top: 0;
   height: 100%;
   width: 1px;
-  background: linear-gradient(to bottom, var(--earth-medium), transparent);
+  background: linear-gradient(to bottom, var(--accent-gray), transparent);
   transform: translateX(-50%);
 }
 
@@ -700,7 +700,7 @@ nav a.active::after {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: var(--earth-medium);
+  background-color: var(--accent-gray);
   transform: translateX(-50%);
   box-shadow: var(--glow-earth);
 }
@@ -711,7 +711,7 @@ nav a.active::after {
 
 .timeline-content h4 {
   margin-bottom: var(--space-1);
-  color: var(--earth-deep);
+  color: var(--accent-dark);
   font-family: var(--font-sans);
 }
 
@@ -730,7 +730,7 @@ nav a.active::after {
 .skill-tag {
   display: inline-block;
   background-color: rgba(58, 90, 64, 0.1);
-  color: var(--earth-medium);
+  color: var(--accent-gray);
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-full);
   font-size: 0.875rem;
@@ -752,14 +752,14 @@ nav a.active::after {
   width: 40px;
   height: 40px;
   background-color: rgba(58, 90, 64, 0.1);
-  color: var(--earth-medium);
+  color: var(--accent-gray);
   border-radius: 50%;
   transition: all var(--transition-fast);
   border: 1px solid rgba(88, 129, 87, 0.1);
 }
 
 .social-icons a:hover {
-  background-color: var(--earth-medium);
+  background-color: var(--accent-gray);
   color: white;
   transform: translateY(-3px);
   box-shadow: var(--glow-earth);
@@ -793,7 +793,7 @@ nav a.active::after {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--earth-medium), transparent);
+  background: linear-gradient(90deg, transparent, var(--accent-gray), transparent);
   opacity: 0;
   transition: opacity var(--transition);
 }
@@ -816,7 +816,7 @@ nav a.active::after {
 
 .publication-year {
   display: inline-block;
-  background-color: var(--earth-medium);
+  background-color: var(--accent-gray);
   color: white;
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
@@ -844,7 +844,7 @@ nav a.active::after {
 
 /* Footer */
 footer {
-  background-color: var(--earth-deep);
+  background-color: var(--accent-dark);
   color: white;
   padding: var(--space-8) 0;
   border-top: 1px solid rgba(88, 129, 87, 0.1);
@@ -861,11 +861,11 @@ footer::before {
 
 blockquote {
   background-color: var(--neutral-200);
-  border-left: 4px solid var(--earth-light);
+  border-left: 4px solid var(--accent-light);
   margin: 1.5em 0;
   padding: 1em 1.5em;
   font-style: italic;
-  color: var(--earth-deep);
+  color: var(--accent-dark);
   position: relative;
 }
 
@@ -893,11 +893,11 @@ blockquote cite {
   margin-top: 0.5em;
   text-align: right;
   font-style: normal;
-  color: var(--earth-medium);
+  color: var(--accent-gray);
 }
 
 .definition-properties {
-  border-left: 4px solid var(--earth-light);
+  border-left: 4px solid var(--accent-light);
   left: 0.1em;
 }
 

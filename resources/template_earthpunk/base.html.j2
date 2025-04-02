@@ -9,11 +9,20 @@
 </div>
 {%- endblock codecell %}
 
+
+
+
+
 {% block input_group -%}
+{%- set is_view_only = "hide_code" in cell.metadata.get("tags", []) -%}
+{% if not is_view_only  %}
 <div class="input">
-{{ super() }}
+    {{ super() }}
 </div>
+{% endif %}
 {% endblock input_group %}
+
+
 
 {% block output_group %}
 <div class="output_wrapper">
@@ -49,12 +58,9 @@
 
 {% block input %}
 <div class="inner_cell">
-    {%- set is_figure = "figure" in cell.metadata.get("tags", []) -%}
-    {% if not is_figure %}
     <div class="input_area">
-{{ cell.source | highlight_code(metadata=cell.metadata) | clean_html }}
+    {{ cell.source | highlight_code(metadata=cell.metadata) | clean_html }}
     </div>
-    {% endif %}
 </div>
 {%- endblock input %}
 

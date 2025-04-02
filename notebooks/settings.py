@@ -45,7 +45,7 @@ earthpunk_plot_style = {
         colors['leaf_highlight'],
         colors['sunset_orange'],
         colors['amber_gold'],
-        colors['terracotta'],
+        colors['accent-alt'],
         colors['solar_green'],
         colors['earth_light'],
     ]),
