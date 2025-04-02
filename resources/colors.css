@@ -1,0 +1,71 @@
+:root {
+  /* Color Palette - Solarpunk-inspired: living earth and sustainable technology */
+  --earth-deep: #2c3b2d;
+  --earth-medium: #3a5a40;
+  --earth-light: #588157;
+  --solar-green: #a3b18a;
+  --solar-glow: #dad7cd;
+  --amber-gold: #e9c46a;
+  --leaf-highlight: #80b192;
+  --terracotta: #bb5a41;
+  --sunset-orange: #e76f51;
+  --neutral-100: #f6f7f4;
+  --neutral-200: #e5e8e0;
+  --neutral-300: #ccd5c4;
+  --neutral-400: #a7b397;
+  --neutral-500: #778868;
+  --neutral-600: #556246;
+  --neutral-700: #3a4830;
+  --neutral-800: #2c3b2d;
+  --neutral-900: #1c2a1d;
+  --text: #2c3b2d;
+  --text-dim: #778868;
+  --bg: var(--neutral-100);
+  --bg-alt: var(--neutral-200);
+  
+  /* Typography - Natural, organic, practical */
+  --font-mono: 'Space Mono', 'Fira Code', 'Ubuntu Mono', monospace;
+  --font-sans: 'Montserrat', 'Open Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Merriweather', 'Noto Serif', serif;
+  
+  /* Spacing - Based on natural proportions */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  
+  /* Borders - Organic, natural */
+  --radius-sm: 0.125rem;
+  --radius: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-full: 9999px;
+  
+  /* Effects */
+  --shadow-sm: 0 1px 2px 0 rgba(44, 59, 45, 0.05);
+  --shadow: 0 4px 6px -1px rgba(44, 59, 45, 0.1), 0 2px 4px -1px rgba(44, 59, 45, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(44, 59, 45, 0.1), 0 4px 6px -2px rgba(44, 59, 45, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(44, 59, 45, 0.1), 0 10px 10px -5px rgba(44, 59, 45, 0.04);
+  --shadow-inner: inset 0 2px 4px 0 rgba(44, 59, 45, 0.06);
+  --glow-solar: 0 0 15px rgba(218, 215, 205, 0.5);
+  --glow-earth: 0 0 20px rgba(58, 90, 64, 0.3);
+  
+  /* Transitions - Nature-inspired */
+  --transition-fast: 120ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition: 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-slow: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Layout */
+  --container: 1200px;
+  --header-height: 70px;
+
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}

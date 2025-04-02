@@ -4,9 +4,9 @@ import subprocess
 import hashlib
 
 # Configuration
-BUILD_SCRIPT_PATH = os.path.join('scripts', 'build.py')
+BUILD_SCRIPT_PATH = os.path.join('src', 'build.py')
 WATCH_INTERVAL = 1  # seconds
-EXTENSIONS_TO_WATCH = ['.py', '.html', '.css', '.js']
+EXTENSIONS_TO_WATCH = ['.py', '.html', '.css', '.js', '.ipynb']
 
 def get_file_hashes(directory='.', extensions=None):
     """Get hash of all files in directory with specified extensions"""
@@ -14,7 +14,7 @@ def get_file_hashes(directory='.', extensions=None):
     for root, _, files in os.walk(directory):
         for file in files:
             # Skip hidden files and directories
-            if file.startswith('.') or '/.git/' in root:
+            if file.startswith('.') or '/.git/' or './build/' in root:
                 continue
                 
             # Filter by extension if specified

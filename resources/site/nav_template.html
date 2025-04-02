@@ -1,0 +1,22 @@
+{%- macro render_toc_item(item) -%}
+    <li class="toc-level-{{ item.level }}">
+        <a href="#{{ item.anchor }}">{{ item.text }}</a>
+    </li>
+{%- endmacro -%}
+
+<div class="notebook-nav">
+    <button class="notebook-nav-toggle">Toggle Table of Contents</button>
+    <div class="notebook-nav-content">
+        <h3>Table of Contents</h3>
+        <ul class="toc-list">
+        {%- for item in toc_items -%}
+            {{ render_toc_item(item) }}
+        {%- endfor -%}
+        </ul>
+    </div>
+    <script>
+        document.querySelector('.notebook-nav-toggle').addEventListener('click', function() {
+            document.querySelector('.notebook-nav-content').classList.toggle('active');
+        });
+    </script>
+</div>
