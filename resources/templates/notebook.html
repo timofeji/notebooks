@@ -3,23 +3,33 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block head %}
-    {{ super() }} {# Include parent head content #}
-    <title>Jupyter Notebook in Webpage</title>
+    {{ super() }} 
+
+    <link rel="stylesheet" href="{{ url_for_static('styles/notebook.css') }}">
+    <script src="{{ url_for_static('scripts/notebook.js') }}" defer></script>
+
 {% endblock %}
 
 {% block controls %}
-<button id='navButton' onclick='toggleMenu()'>☰</button>
+<button id='nav-button' onclick='toggleMenu()'>☰</button>
 {{ super() }} 
 {% endblock %}
 
 {% block content %}
-
 
 <main class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
     <div class="container">
     <section class="about-section">
         {{ notebook_content|safe }}
     </section>
-</div>
+    </div>
 </main>
+
+
+{% endblock %}
+
+{% block layers %}
+<div class='nav-menu hidden' id='nb-nav-menu'>
+    <div class="nav-menu-header">Navigation:</div>
+</div>
 {% endblock %}

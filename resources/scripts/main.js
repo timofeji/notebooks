@@ -15,11 +15,11 @@ function getInitialTheme() {
 }
 
 function toggleMenu() {
-    const navButton = document.getElementById("navButton");
-    navButton.classList.toggle("btn-toggle");
+    const navButton = document.getElementById("nav-button");
+    navButton.classList.toggle("active");
 
 
-    const navMenu = document.getElementById("navMenu");
+    const navMenu = document.getElementById("nb-nav-menu");
     navMenu.classList.toggle("open");
     navMenu.classList.toggle("hidden");
 }
@@ -81,43 +81,12 @@ function toggleTheme() {
   applyTheme(newTheme);
 }
 
-function adjustControlsMenu() {
-  const controlsMenu = document.querySelector(".controls");
-  const footer = document.querySelector("footer");
-
-  if (!controlsMenu || !footer) return;
-
-  const footerRect = footer.getBoundingClientRect();
-  const controlsRect = controlsMenu.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
-
-  console.log("viewport:"+window.visualViewport);
-
-  console.log("header" + controlsRect.bottom)
-  console.log("footer" + footerRect.top)
-
-  if (controlsRect.bottom > footerRect.top) {
-    // Move the buttons above the footer
-    controlsMenu.style.bottom = `${windowHeight - footerRect.top + 10}px`;
-  } else {
-    // Reset to default bottom positioning
-    controlsMenu.style.bottom = "20px";
-  }
-}
-
 
 
 // Initialize everything
 function init() {
   const initialTheme = getInitialTheme();
   applyTheme(initialTheme);
-
-
-  // adjustControlsMenu()
-
-  // const content = document.querySelector(".content");
-  // content.addEventListener("scroll", adjustControlsMenu);
-  // window.addEventListener("resize", adjustControlsMenu);
 }
 
 

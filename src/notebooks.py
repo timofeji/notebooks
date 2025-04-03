@@ -147,9 +147,9 @@ custom_latex_macros = r'''
 NOTEBOOK_TEMPLATE = 'template_earthpunk'
 
 html_exporter = HTMLExporter()
-html_exporter.register_preprocessor(LightDarkMatplotlibPreprocessor(), enabled=True)
-html_exporter.register_preprocessor(NavigationMenuPreprocessor(), enabled=True)
-html_exporter.template_name = 'full'  # Use basic template
+# html_exporter.register_preprocessor(LightDarkMatplotlibPreprocessor(), enabled=True)
+# html_exporter.register_preprocessor(NavigationMenuPreprocessor(), enabled=True)
+html_exporter.template_name = 'lab'  # Use basic template
 html_exporter.exclude_input_prompt = True  # Remove input prompts
 html_exporter.exclude_output_prompt = True  # Remove output prompts
 html_exporter.template_data = {
