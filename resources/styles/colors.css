@@ -1,5 +1,7 @@
 
 body[data-theme="light"] {
+
+  --accent-main: #e5e8e0;
   --accent-dark: #2c3b2d;
   --accent-gray: #3a5a40;
   --accent-light: #588157;
@@ -25,17 +27,18 @@ body[data-theme="light"] {
   --bg-alt: var(--neutral-200);
 
 
+
 }
 
 body[data-theme="dark"] {
-  /* Dark Theme Colors - Flipping the natural palette */
+  --accent-main:  #556246;
   --accent-dark: #dad7cd;
   --accent-gray: #a3b18a;
   --accent-light: #588157;
   --accent-light-2: #3a5a40;
-  --accent-solarized: #62645e57;
+  --accent-solarized: #0d0e0c7a;
   --accent-active: #e9c46a;   /* Keeping active color visible */
-  --accent-highlight: #80b192; /* Adjusted for dark mode */
+  --accent-highlight: #a7b397; /* Adjusted for dark mode */
   --accent-alt: #e76f51;      /* Keeping vibrant */
   --accent-alt2: #bb5a41;    
   
@@ -47,8 +50,8 @@ body[data-theme="dark"] {
   --neutral-500: #778868;
   --neutral-400: #556246;
   --neutral-300: #3a4830;
-  --neutral-200: #141714;
-  --neutral-100: #111512 ;
+  --neutral-200: #050605;
+  --neutral-100: #061106 ;
  
   /* Text colors for dark mode */
   --text: #dad7cd;

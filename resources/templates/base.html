@@ -24,7 +24,7 @@
                 <li><a href="{{ url_for_page('publications.html') }}" {% if active_page=='publications' %}
                         class="active" {% endif %}>Publications</a></li>
                 <li><a href="{{ url_for_page('portfolio.html') }}" {% if active_page=='portfolio' %} class="active" {%
-                        endif %}>Portfolio</a></li>
+                        endif %}>Releases</a></li>
                 <li><a href="{{ url_for_page('about.html') }}" {% if active_page=='about' %} class="active" {% endif
                         %}>About</a></li>
             </ul>
@@ -49,10 +49,12 @@
     
         </div>
         <footer>
+            
             <p>&copy; 2025 Timofej Jermolaev | <a href="#">Contact</a></p>
-            <div class="social-links">
-                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <div class="social-icons">
+                <a href="#" aria-label="Email"><img src="static/icon_email.svg" ></img></a>
+                <a href="#" aria-label="GitHub"><img src="static/icon_github.svg" ></img></a>
+                <a href="#" aria-label="LinkedIn"><img src="static/icon_linkedin.svg" ></img></a>
                 <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
             </div>
         </footer>

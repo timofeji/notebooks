@@ -131,26 +131,28 @@ def main():
     if not OUTPUT_STYLES_DIR.exists():
         OUTPUT_STYLES_DIR.mkdir(parents=True)
 
+    OUTPUT_STATIC_DIR = OUTPUT_DIR / 'static'
+    if not OUTPUT_STATIC_DIR.exists():
+        OUTPUT_STATIC_DIR.mkdir(parents=True)
     
     OUTPUT_SCRIPTS_DIR = OUTPUT_DIR / 'scripts'
     if not OUTPUT_SCRIPTS_DIR.exists():
         OUTPUT_SCRIPTS_DIR.mkdir(parents=True)
  
+    for root, dirs, files in os.walk(RESOURCES_DIR):
+        for filename  in files:
+            src_path = Path(root) / filename
+            if filename.endswith(".css"): 
+                dest_path = os.path.join(OUTPUT_STYLES_DIR, filename)
+                shutil.copy2(src_path, dest_path) 
+            elif filename.endswith(".js"): 
+                dest_path = os.path.join(OUTPUT_SCRIPTS_DIR, filename)
+                shutil.copy2(src_path, dest_path) 
+            elif filename.endswith(( ".svg", ".png", ".jpg" )) :
+                dest_path = os.path.join(OUTPUT_STATIC_DIR, filename)
+                shutil.copy2(src_path, dest_path) 
+
     
-    for filename in os.listdir(STYLE_DIR):
-        if filename.endswith(".css"): 
-            src_path = os.path.join(STYLE_DIR, filename)
-            dest_path = os.path.join(OUTPUT_STYLES_DIR, filename)
-            shutil.copy2(src_path, dest_path) 
-
-    for filename in os.listdir(SCRIPTS_DIR):
-        if filename.endswith(".js"): 
-            src_path = os.path.join(SCRIPTS_DIR, filename)
-            dest_path = os.path.join(OUTPUT_SCRIPTS_DIR, filename)
-            shutil.copy2(src_path, dest_path) 
-
-
-
     notebooks_by_category = search_notebooks(NOTEBOOK_DIR)
     for category, notebooks in notebooks_by_category.items():
         category_output_dir = OUTPUT_DIR / category

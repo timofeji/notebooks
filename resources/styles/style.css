@@ -131,7 +131,7 @@ body {
   grid-area: main; 
   scrollbar-width: 5px;
   scrollbar-color: var(--accent-dark) #00000000;
-  overflow-y: scroll;
+  overflow-y: auto;
 
 
   width: 100%;
@@ -171,10 +171,10 @@ body {
   
 }
 .controls button:hover {
-  background-color: var(--accent-alt);
+  background-color: var(--accent-active);
 }
 .controls button:active {
-  background-color: var(--accent-active);
+  background-color: var(--accent-alt);
 }
 
 .controls .active {
@@ -213,10 +213,6 @@ a:hover {
 a:after {
   content: '';
   position: absolute;
-  width: 0;
-  height: 1px;
-  bottom: -2px;
-  left: 0;
   background: linear-gradient(90deg, var(--accent-gray), transparent);
   transition: width var(--transition);
 }
@@ -275,6 +271,16 @@ code,
 pre {
   font-family: var(--font-mono);
   font-size: 0.9em;
+}
+/* Footer */
+footer {
+  height: var(--footer-height);
+  background-color: var(--accent-main);
+  /* padding: var(--space-4) 0; */
+  /* border-top: 1px solid var(--accent-light-2); */
+  border-top: 1px solid rgba(88, 129, 87, 0.1);
+  width: 100%;
+  text-align: center;
 }
 
 /* Header */
@@ -536,7 +542,7 @@ nav a.active::after {
 .post-card,
 .portfolio-card,
 .category-card {
-  background-color: white;
+  background-color: var(--accent-dark);
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow);
@@ -587,14 +593,14 @@ nav a.active::after {
 
 .post-card h3,
 .portfolio-card h3 {
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-1);
   font-size: 1.25rem;
   font-family: var(--font-sans);
 }
 
 .post-card h3 a,
 .portfolio-card h3 a {
-  color: var(--accent-dark);
+  color: var(--text-alt);
   transition: color var(--transition-fast);
 }
 
@@ -605,8 +611,8 @@ nav a.active::after {
 
 .post-excerpt,
 .portfolio-card p {
-  color: var(--neutral-600);
-  margin-bottom: var(--space-4);
+  color: var(--neutral-100);
+  margin-bottom: var(--space-2);
   flex-grow: 1;
 }
 
@@ -619,7 +625,7 @@ nav a.active::after {
   border-radius: var(--radius-full);
   font-size: 0.75rem;
   font-weight: 600;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   letter-spacing: 0.02em;
   font-family: var(--font-sans);
 }
@@ -627,23 +633,23 @@ nav a.active::after {
 .read-more {
   display: inline-flex;
   align-items: center;
-  color: var(--accent-gray);
+  color: var(--neutral-300);
   font-weight: 600;
   transition: color var(--transition-fast);
-  margin-left: auto;
+  /* margin-left: auto; */
   /* Pushes it to the right */
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 1.75rem;
 }
 
 .read-more:after {
   content: '→';
-  margin-left: var(--space-2);
+  /* margin-left: var(--space-2); */
   transition: transform var(--transition-fast);
 }
 
 .read-more:hover {
-  color: var(--accent-highlight);
+  color: var(--accent-gray);
 }
 
 .read-more:hover:after {
@@ -877,6 +883,9 @@ nav a.active::after {
   margin-top: var(--space-4);
 }
 
+.social-icons svg{
+  color: var(--accent-gray);
+}
 .social-icons a {
   display: flex;
   align-items: center;
@@ -898,12 +907,3 @@ nav a.active::after {
 }
 
 
-/* Footer */
-footer {
-  height: var(--footer-height);
-  background-color: var(--text-alt);
-  /* padding: var(--space-4) 0; */
-  border-top: 1px solid var(--accent-light-2);
-  width: 100%;
-  text-align: center;
-}
