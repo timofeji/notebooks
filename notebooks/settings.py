@@ -19,7 +19,7 @@ def load_colors_from_css(css_file):
 
 
 # Load colors from CSS
-colors = load_colors_from_css( os.path.join(PROJECT_DIR , "resources\colors.css"))
+colors = load_colors_from_css( os.path.join(PROJECT_DIR , "resources\styles\colors.css"))
 
 
 import numpy as np
@@ -29,25 +29,25 @@ import matplotlib.pyplot as plt
 # Create a custom style dictionary
 earthpunk_plot_style = {
     # Figure
-    'figure.facecolor': colors['neutral_100'],
-    'figure.edgecolor': colors['earth_deep'],
+    'figure.facecolor': 'none',
+    'figure.edgecolor': colors['accent_dark'],
     
     # Axes
-    'axes.facecolor': colors['neutral_100'],
-    'axes.edgecolor': colors['earth_medium'],
-    'axes.labelcolor': colors['earth_deep'],
-    'axes.titlecolor': colors['earth_deep'],
+    'axes.facecolor': 'none',
+    'axes.edgecolor': colors['accent_gray'],
+    'axes.labelcolor': colors['accent_dark'],
+    'axes.titlecolor': colors['accent_dark'],
     'axes.grid': True,
     'axes.spines.top': False,
     'axes.spines.right': False,
     'axes.prop_cycle': mpl.cycler(color=[
-        colors['earth_medium'],
-        colors['leaf_highlight'],
-        colors['sunset_orange'],
-        colors['amber_gold'],
-        colors['accent-alt'],
-        colors['solar_green'],
-        colors['earth_light'],
+        colors['accent_gray'],
+        colors['accent_highlight'],
+        colors['accent_alt'],
+        colors['accent_alt2'],
+        colors['accent_alt'],
+        colors['accent_light_2'],
+        colors['accent_light'],
     ]),
     
     # Grid
@@ -57,21 +57,21 @@ earthpunk_plot_style = {
     'grid.alpha': 0.7,
     
     # Text
-    'text.color': colors['earth_deep'],
+    'text.color': colors['text'],
     'font.family': ['sans-serif'],
     'font.sans-serif': ['Montserrat', 'Open Sans', 'DejaVu Sans'],
     
     # Ticks
-    'xtick.color': colors['earth_deep'],
-    'ytick.color': colors['earth_deep'],
-    'xtick.labelcolor': colors['earth_deep'],
-    'ytick.labelcolor': colors['earth_deep'],
+    'xtick.color': colors['accent_dark'],
+    'ytick.color': colors['accent_dark'],
+    'xtick.labelcolor': colors['accent_dark'],
+    'ytick.labelcolor': colors['accent_dark'],
     
     # Legend
     'legend.frameon': True,
     'legend.framealpha': 0.9,
-    'legend.facecolor': colors['solar_glow'],
-    'legend.edgecolor': colors['earth_light'],
+    'legend.facecolor': colors['accent_solarized'],
+    'legend.edgecolor': colors['accent_light'],
     
     # Lines
     'lines.linewidth': 2.5,
@@ -81,13 +81,13 @@ earthpunk_plot_style = {
     'scatter.marker': 'o',
     
     # Patches
-    'patch.edgecolor': colors['earth_medium'],
-    'patch.facecolor': colors['solar_green'],
+    'patch.edgecolor': colors['accent_gray'],
+    'patch.facecolor': colors['accent_light_2'],
     
     # Saving figures
     'savefig.dpi': 300,
-    'savefig.facecolor': colors['neutral_100'],
-    'savefig.edgecolor': colors['earth_deep'],
+    'savefig.facecolor': 'none',
+    'savefig.edgecolor': colors['accent_dark'],
 }
 
 plt.style.use(earthpunk_plot_style)

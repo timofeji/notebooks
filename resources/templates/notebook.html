@@ -1,9 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}{{ notebook.title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block head %}
+    {{ super() }} {# Include parent head content #}
+    <title>Jupyter Notebook in Webpage</title>
+{% endblock %}
+
+{% block controls %}
+<button id='navButton' onclick='toggleMenu()'>☰</button>
+{{ super() }} 
+{% endblock %}
 
 {% block content %}
-<main class="container notebook-content">
-    {{ notebook_content|safe }}
+
+
+<main class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+    <div class="container">
+    <section class="about-section">
+        {{ notebook_content|safe }}
+    </section>
+</div>
 </main>
 {% endblock %}

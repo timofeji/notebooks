@@ -5,35 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} - Timofej Jermolaev</title>
     <link rel="stylesheet" href="{{ url_for_static('styles/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="{{ url_for_static('styles/colors_dark.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for_static('styles/colors.css') }}">
     <script src="{{ url_for_static('scripts/main.js') }}" defer></script>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Timofej Jermolaev</h1>
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for_page('index.html') }}"{% if active_page == 'home' %} class="active"{% endif %}>Home</a></li>
-                    <li><a href="{{ url_for_page('publications.html') }}"{% if active_page == 'publications' %} class="active"{% endif %}>Publications</a></li>
-                    <li><a href="{{ url_for_page('portfolio.html') }}"{% if active_page == 'portfolio' %} class="active"{% endif %}>Portfolio</a></li>
-                    <li><a href="{{ url_for_page('about.html') }}"{% if active_page == 'about' %} class="active"{% endif %}>About</a></li>
-                </ul>
-            </nav>
-        </div>
+        <h1>Timofej Jermolaev</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for_page('index.html') }}"{% if active_page == 'home' %} class="active"{% endif %}>Home</a></li>
+                <li><a href="{{ url_for_page('publications.html') }}"{% if active_page == 'publications' %} class="active"{% endif %}>Publications</a></li>
+                <li><a href="{{ url_for_page('portfolio.html') }}"{% if active_page == 'portfolio' %} class="active"{% endif %}>Portfolio</a></li>
+                <li><a href="{{ url_for_page('about.html') }}"{% if active_page == 'about' %} class="active"{% endif %}>About</a></li>
+            </ul>
+        </nav>
     </header>
-
-    {% block content %}{% endblock %}
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Timofej Jermolaev | <a href="#">Contact</a></p>
-            <div class="social-links">
-                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-            </div>
+    <div class="content">
+        
+        {% block content %}{% endblock %}
+        <div class="controls">
+            {% block controls %}
+            <button id='theme-toggle-btn' onclick='toggleTheme()'><span id="theme-toggle-icon"></span></button>
+            {% endblock %}
         </div>
-    </footer>
+    
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Timofej Jermolaev | <a href="#">Contact</a></p>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
 </body>
 </html>

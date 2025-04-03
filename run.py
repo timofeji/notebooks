@@ -14,7 +14,7 @@ def get_file_hashes(directory='.', extensions=None):
     for root, _, files in os.walk(directory):
         for file in files:
             # Skip hidden files and directories
-            if file.startswith('.') or '/.git/' or './build/' in root:
+            if file.startswith('.') or '/.git/' in root:
                 continue
                 
             # Filter by extension if specified

@@ -140,7 +140,6 @@ def main():
     for filename in os.listdir(STYLE_DIR):
         if filename.endswith(".css"): 
             src_path = os.path.join(STYLE_DIR, filename)
-            print(src_path)
             dest_path = os.path.join(OUTPUT_STYLES_DIR, filename)
             shutil.copy2(src_path, dest_path) 
 
@@ -161,7 +160,7 @@ def main():
             generate_notebook(n, category_output_dir, RESOURCES_DIR)
         
         # Generate category page
-        generate_category_page(category, notebooks, category_output_dir)
+        # generate_category_page(category, notebooks, category_output_dir)
     
     # Generate homepage and other pages
     generate_website(notebooks_by_category, OUTPUT_DIR)
