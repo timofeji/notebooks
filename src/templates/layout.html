@@ -2,13 +2,13 @@
     <h1>Timofej Jermolaev</h1>
     <nav>
         <ul>
-            <li><a href="{{url}}index.html" {% if active_page=='home' %} class="active" {% endif %}>Home</a>
+            <li><a href="{{url}}" {% if active_page=='home' %} class="active" {% endif %}>Home</a>
             </li>
-            <li><a href="{{url}}publications.html" {% if active_page=='publications' %} class="active" {% endif
+            <li><a href="{{url}}publications" {% if active_page=='publications' %} class="active" {% endif
                     %}>Publications</a></li>
-            <li><a href="{{url}}portfolio.html" {% if active_page=='portfolio' %} class="active" {% endif
+            <li><a href="{{url}}portfolio" {% if active_page=='portfolio' %} class="active" {% endif
                     %}>Releases</a></li>
-            <li><a href="{{url}}about.html" {% if active_page=='about' %} class="active" {% endif %}>About</a></li>
+            <li><a href="{{url}}about" {% if active_page=='about' %} class="active" {% endif %}>About</a></li>
         </ul>
     </nav>
 </header>
@@ -21,8 +21,8 @@
         </div>
         <div class="layer">
             <div class="controls">
-                {{controls}}
                 <button id='theme-toggle-btn' onclick='toggleTheme()'><span id="theme-toggle-icon"></span></button>
+                {{controls}}
             </div>
         </div>
 

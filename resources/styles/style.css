@@ -91,7 +91,7 @@ body {
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  display: inline-flex;
+  display: inline-block;
   bottom: 0;
 
 }
@@ -146,13 +146,15 @@ body {
 .controls {
   position: sticky;
   bottom: 0px;
-  left: 0px;
+  right: 0px;
   display: flex;
+  justify-content: flex-end;
+
   gap: 10px;
   z-index: 10;
 
   padding-bottom: var(--controls-offset);
-  padding-left: var(--controls-offset);
+  padding-right: var(--controls-offset);
 }
 
 

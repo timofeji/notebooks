@@ -176,7 +176,7 @@ def run_build(build_settings=None):
             dest_path = os.path.join(OUTPUT_STATIC_DIR, img_id)
             shutil.copy2(src_path, dest_path) 
             settings['image'] = f'static/{img_id}'
-            settings['url'] = f"{category_path}/{nb_file.stem}.html" if category_path else f"{nb_file.stem}.html"
+            settings['url'] = f"{category_path}/{nb_file.stem}" if category_path else f"{nb_file.stem}"
             nb_page_settings.append(settings)
 
 
