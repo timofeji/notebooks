@@ -3,14 +3,14 @@ import uuid
 import time
 import shutil
 import hashlib
+import asyncio
 
 from notebooks import *
 from core import *
 
 WATCH_INTERVAL = 1  # seconds
 EXTENSIONS_TO_WATCH = ['.py', '.html', '.css', '.js', '.ipynb']
-IGNORED_DIRECTORIES = ['./build', './.git']
-SPECIAL_WATCH_DIRECTORIES = ['./resources', './notebooks']
+IGNORED_DIRECTORIES = ['./.git', str(OUTPUT_DIR)]
 
 SAMPLE_PUBLICATIONS = [
     {
@@ -59,27 +59,9 @@ def generate_website(nb_by_category, nb_page_settings):
     
     # Prepare featured posts data
     featured_posts = []
-    featured_count = 0
 
     for nb_settings in nb_page_settings:
         featured_posts.append(nb_settings)
-    
-    for category, notebooks in nb_by_category.items():
-        category_dir = category if category != Path('.') else ''
-        for nb_file in notebooks[:2]:  # Limit to 2 notebooks per category
-            if featured_count >= 6:  # Limit to 6 featured posts total
-                break
-            # featured_posts.append({
-            #     'image': settings['image'],
-            #     'category': str(category) if str(category) != '.' else 'Main',
-            #     'title': settings['title'],
-            #     'url': 
-            # })
-            # featured_count += 1
-        
-        if featured_count >= 6:
-            break
-    
     # Render homepage
     template = env.get_template('homepage.html')
     index_html = template.render(
@@ -131,7 +113,10 @@ def generate_portfolio_page(output_dir):
         f.write(portfolio_html)
 
 
-def run_build(build_settings=None):
+def run_build(files_to_build=None):
+    print(files_to_build)
+
+
     if not OUTPUT_DIR.exists():
         OUTPUT_DIR.mkdir(parents=True)
 
@@ -161,22 +146,18 @@ def run_build(build_settings=None):
                 shutil.copy2(src_path, dest_path) 
 
     
-    notebooks_by_category = search_notebooks(NOTEBOOK_DIR)
+    nb_sources = search_notebooks(NOTEBOOK_DIR)
 
     nb_page_settings = []
-    for category_path, notebooks in notebooks_by_category.items():
-        category_dir = OUTPUT_DIR / category_path
-        category_dir.mkdir(parents=True, exist_ok=True)
-        
-        for nb_file in notebooks:
-            _, settings = generate_notebook_page(nb_file, category_dir)
+    for nb_path, nb_file in nb_sources.items():
+        for nb_file in nb_file:
+            _, settings = generate_notebook_page(nb_file)
 
             img_id = str(uuid.uuid4())
-            src_path = os.path.join(NOTEBOOK_DIR,category_path, Path(settings['image']))
+            src_path = os.path.join(NOTEBOOK_DIR,nb_path, Path(settings['image']))
             dest_path = os.path.join(OUTPUT_STATIC_DIR, img_id)
             shutil.copy2(src_path, dest_path) 
             settings['image'] = f'static/{img_id}'
-            settings['url'] = f"{category_path}/{nb_file.stem}" if category_path else f"{nb_file.stem}"
             nb_page_settings.append(settings)
 
 
@@ -184,8 +165,7 @@ def run_build(build_settings=None):
             
 
     # Generate homepage and other pages
-    generate_website(notebooks_by_category, nb_page_settings)
-
+    generate_website(nb_sources, nb_page_settings)
 
 def get_file_hashes(directory='.', extensions=None):
     """Get hash of all files in directory with specified extensions"""
@@ -213,10 +193,7 @@ def get_file_hashes(directory='.', extensions=None):
                 continue
     return file_hashes
 
-
-
-
-def watch_for_changes():
+async def watch_for_changes():
     """Watch for file changes and run build.py when detected"""
     # Initial build
     
@@ -226,6 +203,8 @@ def watch_for_changes():
     
     # Get initial file hashes
     last_file_hashes = get_file_hashes(extensions=EXTENSIONS_TO_WATCH)
+
+   
     
     try:
         while True:
@@ -246,11 +225,11 @@ def watch_for_changes():
                 
                 # Check if any special directories were modified
                 special_dirs_changed = []
-                for file in changed_files:
-                    for special_dir in SPECIAL_WATCH_DIRECTORIES:
-                        if file.startswith(special_dir):
-                            if special_dir not in special_dirs_changed:
-                                special_dirs_changed.append(special_dir)
+                # for file in changed_files:
+                #     for special_dir in SPECIAL_WATCH_DIRECTORIES:
+                #         if file.startswith(special_dir):
+                #             if special_dir not in special_dirs_changed:
+                #                 special_dirs_changed.append(special_dir)
                 
                 # Print changed files (limit to 5 to avoid clutter)
                 if changed_files:
@@ -268,15 +247,49 @@ def watch_for_changes():
                     
                 # Update hashes
                 last_file_hashes = current_file_hashes
+                await notify_clients()
+
     except KeyboardInterrupt:
         print("\n👋 File watcher stopped")
+
+clients = set()  # Store connected WebSocket clients
+async def websocket_handler(websocket, path):
+    """ Handle WebSocket connections """
+    print("Client connected")
+    clients.add(websocket)
+    try:
+        async for message in websocket:
+            pass  # Keep connection open
+    finally:
+        clients.remove(websocket)
+        print("Client disconnected")
+
+async def notify_clients(file_types=None):
+    """ Notify all connected clients to reload specific file types """
+
+    print(clients)
+    for client in clients:
+        client.send("reload")
+
+import websockets
+async def start_watcher():
+    """ Start the file watcher and WebSocket server properly """
+    # Create and start the WebSocket server first
+    server = await websockets.serve(websocket_handler, "localhost", 8765)
+    print("WebSocket server running on ws://localhost:8765")
+
+    # Start the file checking loop in the background
+    asyncio.create_task(watch_for_changes())
+    loop = asyncio.get_event_loop()
+    loop.run_forever()  # Keep the loop alive
+
+    
 
 def main(cfg):
     run_build(cfg)
     if cfg.watch:
-        watch_for_changes()
-
-
+        asyncio.run(start_watcher())
+        
 import argparse
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

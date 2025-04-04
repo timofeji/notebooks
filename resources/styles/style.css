@@ -556,8 +556,12 @@ nav a.active::after {
   img {
     border-bottom: 2px solid rgba(88, 129, 87, 0.2);
   }
-}
 
+}
+.post-category {
+margin: 0;
+  color: var(--accent-gray);
+}
 .post-card::before {
   content: '';
   position: absolute;
@@ -567,7 +571,7 @@ nav a.active::after {
   height: 100%;
   background: linear-gradient(180deg, rgba(58, 90, 64, 0.02) 0%, transparent 100%);
   opacity: 0;
-  transition: opacity var(--transition);
+  transition: all var(--transition);
 }
 .post-card:hover::before
 {
@@ -580,6 +584,11 @@ nav a.active::after {
   box-shadow: var(--shadow-lg), var(--glow-earth);
   border-color: rgba(88, 129, 87, 0.2);
   border: 1px solid rgba(88, 129, 87, 0.1);
+
+ img {
+    filter: saturate(1.05) contrast(1.02);
+    border-bottom: 2px solid rgba(88, 129, 87, 0.2);
+  }
 }
 
 .post-card-content {
@@ -598,8 +607,10 @@ nav a.active::after {
 }
 
 .post-card h3 {
-  color: var(--text-alt);
-  transition: color var(--transition-fast);
+  a {
+    color: var(--neutral-100);
+    transition: color var(--transition-fast);
+  }
 }
 
 .post-card h3 a:hover,
@@ -668,7 +679,6 @@ nav a.active::after {
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition);
-  filter: saturate(1.05) contrast(1.02);
 }
 
 .portfolio-card:hover .portfolio-image img {

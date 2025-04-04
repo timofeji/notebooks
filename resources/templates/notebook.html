@@ -11,11 +11,6 @@
     {% endif %}
 {% endblock %}
 
-{% block controls %}
-<button id='nav-button' onclick='toggleMenu()'>☰</button>
-{{ super() }} 
-{% endblock %}
-
 {% block content %}
 
 <main>
@@ -27,8 +22,3 @@
 
 {% endblock %}
 
-{% block layers %}
-<div class='nav-menu hidden' id='nb-nav-menu'>
-    <div class="nav-menu-header">Navigation:</div>
-</div>
-{% endblock %}

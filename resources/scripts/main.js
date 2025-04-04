@@ -25,27 +25,27 @@ function toggleMenu() {
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  const navLinks = document.querySelectorAll('.nb-nav-menu a');
+// document.addEventListener('DOMContentLoaded', function () {
+//   const navLinks = document.querySelectorAll('.nb-nav-menu a');
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
+//   navLinks.forEach(link => {
+//     link.addEventListener('click', function (e) {
+//       e.preventDefault();
 
-      const targetId = this.getAttribute('href');
-      console.log(targetId)
-      const targetElement = document.getElementById(targetId);
-      console.log(targetElement)
+//       const targetId = this.getAttribute('href');
+//       console.log(targetId)
+//       const targetElement = document.getElementById(targetId);
+//       console.log(targetElement)
 
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 70,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-});
+//       if (targetElement) {
+//         window.scrollTo({
+//           top: targetElement.offsetTop - 70,
+//           behavior: 'smooth'
+//         });
+//       }
+//     });
+//   });
+// });
 
 // Apply theme to document
 function applyTheme(theme) {
@@ -82,11 +82,26 @@ function toggleTheme() {
 }
 
 
-
 // Initialize everything
 function init() {
   const initialTheme = getInitialTheme();
   applyTheme(initialTheme);
+
+  const socket = new WebSocket("ws://localhost:8765");
+  socket.onmessage = (event) => {
+    console.log("Project changed, reloading...");
+    location.reload()
+  };
+
+  socket.addEventListener("open", (event) => {
+    socket.send("Hello Server!");
+  });
+
+  // Listen for messages
+  socket.addEventListener("message", (event) => {
+    console.log("Message from server ", event.data);
+  });
+  console.log(socket);
 }
 
 
@@ -95,4 +110,6 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
 } else {
   init();
-}
+} 
+
+

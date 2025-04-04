@@ -57,35 +57,36 @@ def search_notebooks(root_dir):
     return notebooks
 
 
-def generate_notebook_page(n_src_file, output_dir):
+def generate_notebook_page(n_src_file):
     """Convert a notebook to HTML using nbconvert."""
 
      # Load the notebook
     with open(n_src_file, "r", encoding="utf-8") as f:
         notebook_content = nbformat.read(f, as_version=4)
  
-    rel_path = output_dir.relative_to(OUTPUT_DIR)
-    depth = len(rel_path.parts)
     
-    
-    html_exporter.environment.globals['url'] = '../' * depth
+    html_exporter.environment.globals['url'] = '../'
 
     print(f"Generating NoteBook: {n_src_file}")
     notebook_html, resources = html_exporter.from_notebook_node(notebook_content)
     
-    settings = resources['post_settings']
+    post_settings = resources['post_settings']
+    
+    output_dir = Path(os.path.join( OUTPUT_DIR, post_settings['category']))
+    if not output_dir .exists():
+        output_dir.mkdir(parents=True, exist_ok=True)
+    
 
-
-    if not isinstance(settings, dict):
+    if not isinstance(post_settings, dict):
         print(f"ERROR: {n_src_file} doesn't have valid POST_SETTINGS dict")
         return ""
     
 
-    output_file = output_dir / f"{n_src_file.stem}.html"
-    output_dir.mkdir(parents=True, exist_ok=True)
+    output_file = Path( f"{n_src_file.stem}.html")
+    post_settings['url'] = f"{post_settings['category']}/{output_file.stem}.html" if post_settings['category'] else f"{output_file.stem}.html"
     
     # Save the rendered HTML
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(notebook_html)
 
-    return output_file, settings
+    return output_file, post_settings

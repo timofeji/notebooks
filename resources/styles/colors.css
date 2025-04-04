@@ -90,6 +90,9 @@ body[data-theme="light"] {
   --bg: var(--neutral-100);
   --bg-alt: var(--neutral-200);
 
+
+  --accent-main: #a83c3c;
+
   /* Forest Sand Light Refinements */
   --text-code: #224422; /*deeper code text*/
   --text-string: #b58900; /* Solarized Yellow */
@@ -112,7 +115,7 @@ body[data-theme="light"] {
 }
 
 body[data-theme="dark"] {
-  --accent-main: #556246;
+  --accent-main: #6d1b1b;
   --accent-dark: #dad7cd;
   --accent-gray: #a3b18a;
   --accent-light: #588157;
@@ -144,14 +147,14 @@ body[data-theme="dark"] {
 
   /* Forest Sand Dark Refinements */
   --text-code: #d3d7cf; /* Light code text */
-  --text-string: #b58900; /* Solarized Yellow */
-  --text-number: #d33682; /* Solarized Magenta */
-  --text-keyword: #2aa198; /* Solarized Cyan */
+  --text-string: #c8965d; /* Solarized Yellow */
+  --text-number: #9b4747; /* Solarized Magenta */
+  --text-keyword: #778868; /* Solarized Cyan */
   --text-comment: #586e75; /* Solarized base01 */
   --text-function: #268bd2; /* Solarized Blue - refined to a more fitting color */
   --text-constant: #cb4b16; /* Solarized Orange */
-  --bg-code: #002b36; /* Solarized base03 */
-  --border-code: #073642; /* Solarized base02 */
+  --bg-code: #090908; /* Solarized base03 */
+  --border-code: #3828288c;; /* Solarized base02 */
   --accent-emphasis: #859900; /* Solarized Green */
   --text-emphasis: #839496; /*solarized base00*/
 
