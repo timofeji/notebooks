@@ -1,9 +1,16 @@
 import os
+import uuid
+import time
 import shutil
+import hashlib
 
 from notebooks import *
 from core import *
 
+WATCH_INTERVAL = 1  # seconds
+EXTENSIONS_TO_WATCH = ['.py', '.html', '.css', '.js', '.ipynb']
+IGNORED_DIRECTORIES = ['./build', './.git']
+SPECIAL_WATCH_DIRECTORIES = ['./resources', './notebooks']
 
 SAMPLE_PUBLICATIONS = [
     {
@@ -44,31 +51,31 @@ SAMPLE_PROJECTS = [
 ]
 
 
-def generate_website(notebooks_by_category, output_dir):
+def generate_website(nb_by_category, nb_page_settings):
     """Generate homepage with featured posts using Jinja template."""
-    # Ensure the output directory exists
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-    
+
     # Set page depth for homepage (root level)
     env.set_page_depth(0)
     
     # Prepare featured posts data
     featured_posts = []
     featured_count = 0
+
+    for nb_settings in nb_page_settings:
+        featured_posts.append(nb_settings)
     
-    for category, notebooks in notebooks_by_category.items():
+    for category, notebooks in nb_by_category.items():
         category_dir = category if category != Path('.') else ''
-        for notebook in notebooks[:2]:  # Limit to 2 notebooks per category
+        for nb_file in notebooks[:2]:  # Limit to 2 notebooks per category
             if featured_count >= 6:  # Limit to 6 featured posts total
                 break
-                
-            featured_posts.append({
-                'category': str(category) if str(category) != '.' else 'Main',
-                'title': notebook.stem.replace('_', ' ').title(),
-                'url': f"{category_dir}/{notebook.stem}.html" if category_dir else f"{notebook.stem}.html"
-            })
-            featured_count += 1
+            # featured_posts.append({
+            #     'image': settings['image'],
+            #     'category': str(category) if str(category) != '.' else 'Main',
+            #     'title': settings['title'],
+            #     'url': 
+            # })
+            # featured_count += 1
         
         if featured_count >= 6:
             break
@@ -76,19 +83,19 @@ def generate_website(notebooks_by_category, output_dir):
     # Render homepage
     template = env.get_template('homepage.html')
     index_html = template.render(
-        featured_posts=featured_posts,
+        post_settings = featured_posts,
         active_page='home'
     )
     
-    with open(os.path.join(output_dir, 'index.html'), 'w', encoding='utf-8') as f:
+    with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(index_html)
     
     # Generate other main pages
-    generate_about_page(output_dir)
-    generate_publications_page(output_dir)
-    generate_portfolio_page(output_dir)
+    generate_about_page(OUTPUT_DIR)
+    # generate_publications_page(output_dir)
+    # generate_portfolio_page(output_dir)
     
-    print(f"Site successfully built at {output_dir}/index.html")
+    print(f"Site successfully built at {OUTPUT_DIR}/index.html")
 
 def generate_about_page(output_dir):
     """Generate the about page using Jinja template."""
@@ -123,7 +130,8 @@ def generate_portfolio_page(output_dir):
     with open(os.path.join(output_dir, 'portfolio.html'), 'w', encoding='utf-8') as f:
         f.write(portfolio_html)
 
-def main():
+
+def run_build(build_settings=None):
     if not OUTPUT_DIR.exists():
         OUTPUT_DIR.mkdir(parents=True)
 
@@ -134,12 +142,12 @@ def main():
     OUTPUT_STATIC_DIR = OUTPUT_DIR / 'static'
     if not OUTPUT_STATIC_DIR.exists():
         OUTPUT_STATIC_DIR.mkdir(parents=True)
-    
+
     OUTPUT_SCRIPTS_DIR = OUTPUT_DIR / 'scripts'
     if not OUTPUT_SCRIPTS_DIR.exists():
         OUTPUT_SCRIPTS_DIR.mkdir(parents=True)
- 
-    for root, dirs, files in os.walk(RESOURCES_DIR):
+
+    for root, _, files in os.walk(RESOURCES_DIR):
         for filename  in files:
             src_path = Path(root) / filename
             if filename.endswith(".css"): 
@@ -154,18 +162,125 @@ def main():
 
     
     notebooks_by_category = search_notebooks(NOTEBOOK_DIR)
-    for category, notebooks in notebooks_by_category.items():
-        category_output_dir = OUTPUT_DIR / category
-        category_output_dir.mkdir(parents=True, exist_ok=True)
-        
-        for n in notebooks:
-            generate_notebook(n, category_output_dir, RESOURCES_DIR)
-        
-        # Generate category page
-        # generate_category_page(category, notebooks, category_output_dir)
-    
-    # Generate homepage and other pages
-    generate_website(notebooks_by_category, OUTPUT_DIR)
 
+    nb_page_settings = []
+    for category_path, notebooks in notebooks_by_category.items():
+        category_dir = OUTPUT_DIR / category_path
+        category_dir.mkdir(parents=True, exist_ok=True)
+        
+        for nb_file in notebooks:
+            _, settings = generate_notebook_page(nb_file, category_dir)
+
+            img_id = str(uuid.uuid4())
+            src_path = os.path.join(NOTEBOOK_DIR,category_path, Path(settings['image']))
+            dest_path = os.path.join(OUTPUT_STATIC_DIR, img_id)
+            shutil.copy2(src_path, dest_path) 
+            settings['image'] = f'static/{img_id}'
+            settings['url'] = f"{category_path}/{nb_file.stem}.html" if category_path else f"{nb_file.stem}.html"
+            nb_page_settings.append(settings)
+
+
+
+            
+
+    # Generate homepage and other pages
+    generate_website(notebooks_by_category, nb_page_settings)
+
+
+def get_file_hashes(directory='.', extensions=None):
+    """Get hash of all files in directory with specified extensions"""
+    file_hashes = {}
+    for root, _, files in os.walk(directory):
+        # Skip ignored directories
+        if any(ignored_dir in root for ignored_dir in IGNORED_DIRECTORIES):
+            continue
+            
+        for file in files:
+            # Skip hidden files
+            if file.startswith('.'):
+                continue
+                
+            # Filter by extension if specified
+            if extensions and not any(file.endswith(ext) for ext in extensions):
+                continue
+                
+            filepath = os.path.join(root, file)
+            try:
+                with open(filepath, 'rb') as f:
+                    file_hash = hashlib.md5(f.read()).hexdigest()
+                    file_hashes[filepath] = file_hash
+            except (IOError, PermissionError):
+                continue
+    return file_hashes
+
+
+
+
+def watch_for_changes():
+    """Watch for file changes and run build.py when detected"""
+    # Initial build
+    
+    print(f"🔍 Watching for changes to files with extensions: {', '.join(EXTENSIONS_TO_WATCH)}")
+    print(f"⏱️ Checking every {WATCH_INTERVAL} second(s)")
+    print("📝 Press Ctrl+C to stop")
+    
+    # Get initial file hashes
+    last_file_hashes = get_file_hashes(extensions=EXTENSIONS_TO_WATCH)
+    
+    try:
+        while True:
+            time.sleep(WATCH_INTERVAL)
+            current_file_hashes = get_file_hashes(extensions=EXTENSIONS_TO_WATCH)
+            
+            # Check for changes
+            if current_file_hashes != last_file_hashes:
+                # Find changed files
+                changed_files = []
+                for file, hash_value in current_file_hashes.items():
+                    if file not in last_file_hashes or last_file_hashes[file] != hash_value:
+                        changed_files.append(file)
+                
+                for file in last_file_hashes:
+                    if file not in current_file_hashes:
+                        changed_files.append(f"{file} (deleted)")
+                
+                # Check if any special directories were modified
+                special_dirs_changed = []
+                for file in changed_files:
+                    for special_dir in SPECIAL_WATCH_DIRECTORIES:
+                        if file.startswith(special_dir):
+                            if special_dir not in special_dirs_changed:
+                                special_dirs_changed.append(special_dir)
+                
+                # Print changed files (limit to 5 to avoid clutter)
+                if changed_files:
+                    print(f"🔄 Changes detected in {len(changed_files)} file(s):")
+                    for file in changed_files[:5]:
+                        print(f"  - {file}")
+                    if len(changed_files) > 5:
+                        print(f"  - ...and {len(changed_files) - 5} more")
+                    
+                    if special_dirs_changed:
+                        print(f"🔔 Special directories changed: {', '.join(special_dirs_changed)}")
+                    
+                    # Run build with configuration
+                    run_build(special_dirs_changed)
+                    
+                # Update hashes
+                last_file_hashes = current_file_hashes
+    except KeyboardInterrupt:
+        print("\n👋 File watcher stopped")
+
+def main(cfg):
+    run_build(cfg)
+    if cfg.watch:
+        watch_for_changes()
+
+
+import argparse
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--watch', action=argparse.BooleanOptionalAction, help='watch for changes in files')
+    parser.set_defaults()
+    cfg = parser.parse_args()
+    main(cfg)

@@ -75,6 +75,8 @@ body {
   background-image: linear-gradient(to bottom, var(--neutral-200), var(--bg));
   background-repeat: space;
   overflow-y: hidden;
+
+  position: relative;
 }
 
 .layer {
@@ -95,9 +97,8 @@ body {
 }
 /* Layout */
 .container {
-  top: 0;
-  height: calc(100% - calc(var(--footer-height) + var(--header-height) + var(--controls-offset)));
-  width: 100%;
+  /* top: 0; */
+  /* height: calc(100% - calc(var(--footer-height) + var(--header-height) + var(--controls-offset))); */
   max-width: var(--container);
   margin: 0 auto;
 }
@@ -119,6 +120,7 @@ body {
 .content::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
 
 
 /* For Firefox */
@@ -203,23 +205,23 @@ a {
   color: var(--accent-gray);
   text-decoration: none;
   transition: color var(--transition-fast);
-  position: relative;
+  /* position: relative; */
 }
 
 a:hover {
   color: var(--accent-highlight);
 }
-
+/* 
 a:after {
   content: '';
   position: absolute;
   background: linear-gradient(90deg, var(--accent-gray), transparent);
   transition: width var(--transition);
-}
+} */
 
-a:hover:after {
+/* a:hover:after {
   width: 100%;
-}
+} */
 
 /* Typography */
 h1,
@@ -538,24 +540,23 @@ nav a.active::after {
   gap: var(--space-8);
   margin-top: var(--space-8);
 }
-
-.post-card,
-.portfolio-card,
-.category-card {
+.post-card {
   background-color: var(--accent-dark);
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: transform var(--transition), box-shadow var(--transition);
-  border: 1px solid rgba(88, 129, 87, 0.1);
   display: flex;
   flex-direction: column;
   position: relative;
+  cursor: pointer;
+
+  img {
+    border-bottom: 2px solid rgba(88, 129, 87, 0.2);
+  }
 }
 
-.post-card::before,
-.portfolio-card::before,
-.category-card::before {
+.post-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -566,23 +567,20 @@ nav a.active::after {
   opacity: 0;
   transition: opacity var(--transition);
 }
-
-.post-card:hover::before,
-.portfolio-card:hover::before,
-.category-card:hover::before {
+.post-card:hover::before
+{
   opacity: 1;
 }
 
-.post-card:hover,
-.portfolio-card:hover,
-.category-card:hover {
+.post-card:hover
+ {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg), var(--glow-earth);
   border-color: rgba(88, 129, 87, 0.2);
+  border: 1px solid rgba(88, 129, 87, 0.1);
 }
 
-.post-card-content,
-.portfolio-content {
+.post-card-content {
   padding: var(--space-6);
   flex-grow: 1;
   display: flex;
@@ -591,15 +589,13 @@ nav a.active::after {
   z-index: 1;
 }
 
-.post-card h3,
-.portfolio-card h3 {
+.post-card h3 {
   margin-bottom: var(--space-1);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-family: var(--font-sans);
 }
 
-.post-card h3 a,
-.portfolio-card h3 a {
+.post-card h3 {
   color: var(--text-alt);
   transition: color var(--transition-fast);
 }
@@ -608,6 +604,8 @@ nav a.active::after {
 .portfolio-card h3 a:hover {
   color: var(--accent-gray);
 }
+
+
 
 .post-excerpt,
 .portfolio-card p {
@@ -682,11 +680,6 @@ nav a.active::after {
   margin-bottom: var(--space-4);
 }
 
-.tag {
-  background-color: rgba(163, 177, 138, 0.2);
-  color: var(--accent-gray);
-  border: 1px solid rgba(88, 129, 87, 0.1);
-}
 
 .portfolio-filters {
   display: flex;
@@ -858,14 +851,13 @@ nav a.active::after {
   margin-bottom: 0;
 }
 
-.skills-container {
+.tag-container {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  margin-bottom: var(--space-6);
 }
 
-.skill-tag {
+.tag {
   display: inline-block;
   background-color: rgba(58, 90, 64, 0.1);
   color: var(--accent-gray);
@@ -876,27 +868,44 @@ nav a.active::after {
   font-family: var(--font-sans);
   border: 1px solid rgba(88, 129, 87, 0.1);
 }
+.tag-small {
+  display: inline-block;
+  background-color: var(--accent-main);
+  color: var(--text-dim);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: 0.575rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  border: 1px solid rgba(88, 129, 87, 0.1);
+}
+
+
 
 .social-icons {
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
   display: flex;
-  gap: var(--space-4);
-  margin-top: var(--space-4);
+    gap: var(--space-4);
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--space-4);
+a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(58, 90, 64, 0.1);
+    color: var(--accent-gray);
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+    border: 1px solid rgba(88, 129, 87, 0.1);
+  }
 }
-
 .social-icons svg{
   color: var(--accent-gray);
-}
-.social-icons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(58, 90, 64, 0.1);
-  color: var(--accent-gray);
-  border-radius: 50%;
-  transition: all var(--transition-fast);
-  border: 1px solid rgba(88, 129, 87, 0.1);
 }
 
 .social-icons a:hover {

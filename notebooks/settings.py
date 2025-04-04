@@ -70,7 +70,7 @@ earthpunk_plot_style = {
     # Legend
     'legend.frameon': True,
     'legend.framealpha': 0.9,
-    'legend.facecolor': colors['accent_solarized'],
+    # 'legend.facecolor': colors['accent_solarized'],
     'legend.edgecolor': colors['accent_light'],
     
     # Lines

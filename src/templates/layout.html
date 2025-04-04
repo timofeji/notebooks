@@ -1,0 +1,42 @@
+<header>
+    <h1>Timofej Jermolaev</h1>
+    <nav>
+        <ul>
+            <li><a href="{{url}}index.html" {% if active_page=='home' %} class="active" {% endif %}>Home</a>
+            </li>
+            <li><a href="{{url}}publications.html" {% if active_page=='publications' %} class="active" {% endif
+                    %}>Publications</a></li>
+            <li><a href="{{url}}portfolio.html" {% if active_page=='portfolio' %} class="active" {% endif
+                    %}>Releases</a></li>
+            <li><a href="{{url}}about.html" {% if active_page=='about' %} class="active" {% endif %}>About</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="content">
+    {{content}}
+    <div class="stack">
+        <div class="layer">
+            {{layers}}
+        </div>
+        <div class="layer">
+            <div class="controls">
+                {{controls}}
+                <button id='theme-toggle-btn' onclick='toggleTheme()'><span id="theme-toggle-icon"></span></button>
+            </div>
+        </div>
+
+        <div class="layer">
+            <div class="footer-decor"></div>
+        </div>
+    </div>
+    <footer>
+        <div class="social-icons">
+            <p>&copy; 2025 Timofej Jermolaev |</p>
+            <a href="#" aria-label="Email"><img src="static/icon_email.svg"></img></a>
+            <a href="#" aria-label="GitHub"><img src="static/icon_github.svg"></img></a>
+            <a href="#" aria-label="LinkedIn"><img src="static/icon_linkedin.svg"></img></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </footer>
+</div>

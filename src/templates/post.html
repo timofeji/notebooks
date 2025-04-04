@@ -1,0 +1,157 @@
+{%- extends 'base.html.j2' -%}
+{% from 'mathjax.html.j2' import mathjax %}
+{% from 'jupyter_widgets.html.j2' import jupyter_widgets %}
+
+
+
+{%- block header -%}
+<!DOCTYPE html>
+<html>
+<head>
+
+
+{%- block html_head -%}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% set nb_title = nb.metadata.get('title', '') or resources['post_settings']['title'] %}
+<title>{{nb_title}}</title>
+
+<link rel="stylesheet" href="{{url}}styles/colors.css">
+<link rel="stylesheet" href="{{url}}styles/style.css">
+<link rel="stylesheet" href="{{url}}styles/posts.css">
+<link rel="stylesheet" href="{{url}}styles/syntax.css">
+<script src="{{url}}scripts/main.js" defer></script>
+<script src="{{url}}scripts/posts.js" defer></script>
+<script id=MathJax-configuration>
+  window.MathJax = {
+    tex: {
+      tags: "ams",
+      useLabelIds: true,
+      inlineMath: [['$', '$'], ["\\(", "\\)"]],
+      displayMath: [['$$', '$$'], ["\\[", "\\]"]],
+      displayMath: [['$$', '$$']],
+
+      processEscapes: true,
+      processEnvironments: true
+    },
+    chtml: {
+      textAlign: 'left'
+    },
+    TeX: {
+      extensions: ["AMSmath.js", "AMSsymbols.js"],
+      Macros: {
+        "A": "\\mathbb{A}",
+        "B": "\\mathbb{B}",
+        "C": "\\mathbb{C}",
+        "D": "\\mathbb{D}",
+        "E": "\\mathbb{E}",
+        "F": "\\mathbb{F}",
+        "G": "\\mathbb{G}",
+        "H": "\\mathbb{H}",
+        "I": "\\mathbb{I}",
+        "J": "\\mathbb{J}",
+        "K": "\\mathbb{K}",
+        "L": "\\mathbb{L}",
+        "M": "\\mathbb{M}",
+        "N": "\\mathbb{N}",
+        "O": "\\mathbb{O}",
+        "P": "\\mathbb{P}",
+        "Q": "\\mathbb{Q}",
+        "R": "\\mathbb{R}",
+        "S": "\\mathbb{S}",
+        "T": "\\mathbb{T}",
+        "U": "\\mathbb{U}",
+        "V": "\\mathbb{V}",
+        "W": "\\mathbb{W}",
+        "X": "\\mathbb{X}",
+        "Y": "\\mathbb{Y}",
+        "Z": "\\mathbb{Z}",
+        set: ["\\left\\{ #1 \\right\\}", 1]
+      }
+    }
+  }
+</script>
+
+{%- block html_head_js -%}
+{%- block html_head_js_requirejs -%}
+<script src="{{ resources.require_js_url }}"></script>
+{%- endblock html_head_js_requirejs -%}
+{%- endblock html_head_js -%}
+
+{% block jupyter_widgets %}
+  {%- if "widgets" in nb.metadata -%}
+    {{ jupyter_widgets(resources.jupyter_widgets_base_url, resources.html_manager_semver_range) }}
+  {%- endif -%}
+{% endblock jupyter_widgets %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% for css in resources.inlining.css -%}
+  <style type="text/css">
+    {{ css }}
+  </style>
+{% endfor %}
+
+{% block notebook_css %}
+{{ resources.include_css("static/index.css") }}
+{% endblock notebook_css %}
+
+{{ mathjax() }}
+
+{%- block html_head_css -%}
+{%- endblock html_head_css -%}
+
+{%- endblock html_head -%}
+</head>
+{%- endblock header -%}
+
+
+{%- block body_header -%}
+<body>
+{%- endblock body_header -%}
+
+
+
+  {% block body %}
+
+      {% set content %}
+      <main class="container">
+      {{super() }}
+
+      </main>
+      {%endset %}
+      {% include 'layout.html'%}
+  {% endblock body %}
+
+  {% set controls %}
+  <button id='nav-button' onclick='toggleMenu()'>☰</button>
+  {% endset%}
+
+{% set layers %}
+<div class='nav-menu hidden' id='nb-nav-menu'>
+    <div class="nav-menu-header">Navigation:</div>
+</div>
+{% endset %}
+
+
+{% block body_footer %}
+</body>
+{% endblock body_footer %}
+
+
+
+
+{% block footer %}
+</html>
+{% endblock footer %}
+
+
+{% block input_group -%}
+{%- set is_view_only = "hide_code" in cell.metadata.get("tags", []) -%}
+{% if not is_view_only  %}
+<div class="input">
+    {{ super() }}
+</div>
+{% endif %}
+{% endblock input_group %}

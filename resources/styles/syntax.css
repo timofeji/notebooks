@@ -1,0 +1,305 @@
+
+/* Syntax Highlighting */
+.highlight pre {
+  padding: 1em;
+  overflow-x: auto;
+  border-radius: 5px;
+  font-family: monospace, monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+
+/* Syntax Highlighting */
+
+/* Light Theme */
+body[data-theme="light"] .highlight pre {
+  background-color: var(--bg-code);
+  color: var(--text-code);
+  border: 1px solid var(--border-code);
+}
+
+body[data-theme="light"] .highlight .c,
+body[data-theme="light"] .highlight .cm,
+body[data-theme="light"] .highlight .cp,
+body[data-theme="light"] .highlight .c1,
+body[data-theme="light"] .highlight .cs {
+  color: var(--text-comment);
+}
+
+body[data-theme="light"] .highlight .err {
+  color: var(--accent-alt2);
+}
+
+body[data-theme="light"] .highlight .g {
+  color: var(--text-code);
+}
+
+body[data-theme="light"] .highlight .k,
+body[data-theme="light"] .highlight .kc,
+body[data-theme="light"] .highlight .kd,
+body[data-theme="light"] .highlight .kn,
+body[data-theme="light"] .highlight .kp,
+body[data-theme="light"] .highlight .kr,
+body[data-theme="light"] .highlight .kt {
+  color: var(--text-keyword);
+}
+
+body[data-theme="light"] .highlight .l,
+body[data-theme="light"] .highlight .ld,
+body[data-theme="light"] .highlight .m,
+body[data-theme="light"] .highlight .mb,
+body[data-theme="light"] .highlight .mf,
+body[data-theme="light"] .highlight .mh,
+body[data-theme="light"] .highlight .mi,
+body[data-theme="light"] .highlight .mo {
+  color: var(--text-number);
+}
+
+body[data-theme="light"] .highlight .n {
+  color: var(--text-code);
+}
+
+body[data-theme="light"] .highlight .o,
+body[data-theme="light"] .highlight .ow {
+  color: var(--accent-gray);
+}
+
+body[data-theme="light"] .highlight .p {
+  color: var(--text-code);
+}
+
+body[data-theme="light"] .highlight .gd {
+  color: #a00;
+}
+
+body[data-theme="light"] .highlight .ge {
+  font-style: italic;
+}
+
+body[data-theme="light"] .highlight .gh {
+  font-weight: bold;
+}
+
+body[data-theme="light"] .highlight .gi {
+  color: #0a0;
+}
+
+body[data-theme="light"] .highlight .gp {
+  color: var(--text-comment);
+}
+
+body[data-theme="light"] .highlight .gs {
+  font-weight: bold;
+}
+
+body[data-theme="light"] .highlight .gu {
+  font-weight: bold;
+}
+
+body[data-theme="light"] .highlight .gt {
+  color: #a00;
+}
+
+body[data-theme="light"] .highlight .s,
+body[data-theme="light"] .highlight .sa,
+body[data-theme="light"] .highlight .sb,
+body[data-theme="light"] .highlight .sc,
+body[data-theme="light"] .highlight .dl,
+body[data-theme="light"] .highlight .sd,
+body[data-theme="light"] .highlight .s2,
+body[data-theme="light"] .highlight .se,
+body[data-theme="light"] .highlight .sh,
+body[data-theme="light"] .highlight .si,
+body[data-theme="light"] .highlight .sx,
+body[data-theme="light"] .highlight .sr,
+body[data-theme="light"] .highlight .s1,
+body[data-theme="light"] .highlight .ss {
+  color: var(--text-string);
+}
+
+body[data-theme="light"] .highlight .na {
+  color: var(--accent-gray);
+}
+
+body[data-theme="light"] .highlight .nb {
+  color: var(--text-keyword);
+}
+
+body[data-theme="light"] .highlight .nc,
+body[data-theme="light"] .highlight .ne,
+body[data-theme="light"] .highlight .nf,
+body[data-theme="light"] .highlight .nl,
+body[data-theme="light"] .highlight .nn,
+body[data-theme="light"] .highlight .nt {
+  color: var(--text-function);
+}
+
+body[data-theme="light"] .highlight .no {
+  color: var(--text-constant);
+}
+
+body[data-theme="light"] .highlight .nd {
+  color: var(--text-keyword);
+}
+
+body[data-theme="light"] .highlight .ni {
+  color: var(--text-code);
+}
+
+body[data-theme="light"] .highlight .nv {
+  color: var(--text-code);
+}
+
+body[data-theme="light"] .highlight .w {
+  color: var(--text-code);
+}
+body[data-theme="light"] .highlight em{
+    color: var(--text-emphasis);
+}
+
+/* Dark Theme */
+body[data-theme="dark"] .highlight pre {
+  background-color: var(--bg-code);
+  color: var(--text-code);
+  border: 1px solid var(--border-code);
+}
+
+body[data-theme="dark"] .highlight .c,
+body[data-theme="dark"] .highlight .cm,
+body[data-theme="dark"] .highlight .cp,
+body[data-theme="dark"] .highlight .c1,
+body[data-theme="dark"] .highlight .cs {
+  color: var(--text-comment);
+}
+
+body[data-theme="dark"] .highlight .err {
+  color: var(--accent-alt);
+}
+
+body[data-theme="dark"] .highlight .g {
+  color: var(--text-code);
+}
+
+body[data-theme="dark"] .highlight .k,
+body[data-theme="dark"] .highlight .kc,
+body[data-theme="dark"] .highlight .kd,
+body[data-theme="dark"] .highlight .kn,
+body[data-theme="dark"] .highlight .kp,
+body[data-theme="dark"] .highlight .kr,
+body[data-theme="dark"] .highlight .kt {
+  color: var(--text-keyword);
+}
+
+body[data-theme="dark"] .highlight .l,
+body[data-theme="dark"] .highlight .ld,
+body[data-theme="dark"] .highlight .m,
+body[data-theme="dark"] .highlight .mb,
+body[data-theme="dark"] .highlight .mf,
+body[data-theme="dark"] .highlight .mh,
+body[data-theme="dark"] .highlight .mi,
+body[data-theme="dark"] .highlight .mo {
+  color: var(--text-number);
+}
+
+body[data-theme="dark"] .highlight .n {
+  color: var(--text-code);
+}
+
+body[data-theme="dark"] .highlight .o,
+body[data-theme="dark"] .highlight .ow {
+  color: var(--accent-gray);
+}
+
+body[data-theme="dark"] .highlight .p {
+  color: var(--text-code);
+}
+
+body[data-theme="dark"] .highlight .gd {
+  color: #f66;
+}
+
+body[data-theme="dark"] .highlight .ge {
+  font-style: italic;
+}
+
+body[data-theme="dark"] .highlight .gh {
+  font-weight: bold;
+}
+
+body[data-theme="dark"] .highlight .gi {
+  color: #6f6;
+}
+
+body[data-theme="dark"] .highlight .gp {
+  color: var(--text-comment);
+}
+
+body[data-theme="dark"] .highlight .gs {
+  font-weight: bold;
+}
+
+body[data-theme="dark"] .highlight .gu {
+  font-weight: bold;
+}
+
+body[data-theme="dark"] .highlight .gt {
+  color: #f66;
+}
+
+body[data-theme="dark"] .highlight .s,
+body[data-theme="dark"] .highlight .sa,
+body[data-theme="dark"] .highlight .sb,
+body[data-theme="dark"] .highlight .sc,
+body[data-theme="dark"] .highlight .dl,
+body[data-theme="dark"] .highlight .sd,
+body[data-theme="dark"] .highlight .s2,
+body[data-theme="dark"] .highlight .se,
+body[data-theme="dark"] .highlight .sh,
+body[data-theme="dark"] .highlight .si,
+body[data-theme="dark"] .highlight .sx,
+body[data-theme="dark"] .highlight .sr,
+body[data-theme="dark"] .highlight .s1,
+body[data-theme="dark"] .highlight .ss {
+  color: var(--text-string);
+}
+
+body[data-theme="dark"] .highlight .na {
+  color: var(--accent-gray);
+}
+
+body[data-theme="dark"] .highlight .nb {
+  color: var(--text-keyword);
+}
+
+body[data-theme="dark"] .highlight .nc,
+body[data-theme="dark"] .highlight .ne,
+body[data-theme="dark"] .highlight .nf,
+body[data-theme="dark"] .highlight .nl,
+body[data-theme="dark"] .highlight .nn,
+body[data-theme="dark"] .highlight .nt {
+  color: var(--text-function);
+}
+
+body[data-theme="dark"] .highlight .no {
+  color: var(--text-constant);
+}
+
+body[data-theme="dark"] .highlight .nd {
+  color: var(--text-keyword);
+}
+
+body[data-theme="dark"] .highlight .ni {
+  color: var(--text-code);
+}
+
+body[data-theme="dark"] .highlight .nv {
+  color: var(--text-code);
+}
+
+body[data-theme="dark"] .highlight .w {
+  color: var(--text-code);
+}
+body[data-theme="dark"] .highlight em{
+    color: var(--text-emphasis);
+}

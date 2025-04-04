@@ -1,4 +1,4 @@
-
+/* 
 body[data-theme="light"] {
 
   --accent-main: #e5e8e0;
@@ -21,15 +21,16 @@ body[data-theme="light"] {
   --neutral-800: #2c3b2d;
   --neutral-900: #1c2a1d;
   --text: #2c3b2d;
-  --text-alt:  #e5e8e0;
   --text-dim: #778868;
+  --text-alt:  #e5e8e0;
+  --text-alt-dim:   #e5e8e085;
   --bg: var(--neutral-100);
   --bg-alt: var(--neutral-200);
 
 
 
-}
-
+} */
+/* 
 body[data-theme="dark"] {
   --accent-main:  #556246;
   --accent-dark: #dad7cd;
@@ -37,12 +38,11 @@ body[data-theme="dark"] {
   --accent-light: #588157;
   --accent-light-2: #3a5a40;
   --accent-solarized: #0d0e0c7a;
-  --accent-active: #e9c46a;   /* Keeping active color visible */
-  --accent-highlight: #a7b397; /* Adjusted for dark mode */
-  --accent-alt: #e76f51;      /* Keeping vibrant */
+  --accent-active: #e9c46a;   
+  --accent-highlight: #a7b397; 
+  --accent-alt: #e76f51;      
   --accent-alt2: #bb5a41;    
   
-  /* Neutral palette inverted */
   --neutral-900: #f6f7f4;
   --neutral-800: #e5e8e0;
   --neutral-700: #ccd5c4;
@@ -53,11 +53,107 @@ body[data-theme="dark"] {
   --neutral-200: #050605;
   --neutral-100: #061106 ;
  
-  /* Text colors for dark mode */
   --text: #dad7cd;
-  --text-alt:  #151915;
   --text-dim: #a3b18a;
+  --text-alt:  #151915;
+  --text-alt-dim:   #0d0e0d6b;
   --bg: var(--neutral-100);    
   --bg-alt: var(--neutral-200); 
-  
+}
+*/
+
+
+body[data-theme="light"] {
+  --accent-main: #e5e8e0;
+  --accent-dark: #2c3b2d;
+  --accent-gray: #3a5a40;
+  --accent-light: #588157;
+  --accent-light-2: #a3b18a;
+  --accent-solarized: #dad7cd21;
+  --accent-active: #e9c46a;
+  --accent-highlight: #80b192;
+  --accent-alt: #bb5a41;
+  --accent-alt2: #e76f51;
+  --neutral-100: #f6f7f4;
+  --neutral-200: #e5e8e0;
+  --neutral-300: #ccd5c4;
+  --neutral-400: #a7b397;
+  --neutral-500: #778868;
+  --neutral-600: #556246;
+  --neutral-700: #3a4830;
+  --neutral-800: #2c3b2d;
+  --neutral-900: #1c2a1d;
+  --text: #2c3b2d;
+  --text-dim: #778868;
+  --text-alt: #e5e8e0;
+  --text-alt-dim: #e5e8e085;
+  --bg: var(--neutral-100);
+  --bg-alt: var(--neutral-200);
+
+  /* Forest Sand Light Refinements */
+  --text-code: #224422; /*deeper code text*/
+  --text-string: #b58900; /* Solarized Yellow */
+  --text-number: #d33682; /* Solarized Magenta */
+  --text-keyword: #2aa198; /* Solarized Cyan */
+  --text-comment: #93a1a1; /* Solarized base1 */
+  --text-function: #268bd2; /* Solarized Blue - refined to a more fitting color */
+  --text-constant: #cb4b16; /* Solarized Orange */
+  --bg-code: #fdf6e3; /* Solarized base3 */
+  --border-code: #eee8d5; /* Solarized base2 */
+  --accent-emphasis: #859900; /* Solarized Green */
+  --text-emphasis: #657b83; /* solarized base03 */
+
+  /* Light Theme Contrast Boost */
+  --text-function: #8f5902; /* A more muted, earthy function color */
+  --text-keyword: #006400; /* A deeper, forest green for keywords */
+  --text-code: #1a1a1a;  /* Darker code text for improved contrast */
+  --neutral-100: #f0f0e8; /* slightly darker background */
+  --neutral-200: #e0e0d8; /* slightly darker alt background */
+}
+
+body[data-theme="dark"] {
+  --accent-main: #556246;
+  --accent-dark: #dad7cd;
+  --accent-gray: #a3b18a;
+  --accent-light: #588157;
+  --accent-light-2: #3a5a40;
+  --accent-solarized: #0d0e0c7a;
+  --accent-active: #e9c46a; /* Keeping active color visible */
+  --accent-highlight: #a7b397; /* Adjusted for dark mode */
+  --accent-alt: #e76f51; /* Keeping vibrant */
+  --accent-alt2: #bb5a41;
+
+  /* Neutral palette inverted */
+  --neutral-900: #f6f7f4;
+  --neutral-800: #e5e8e0;
+  --neutral-700: #ccd5c4;
+  --neutral-600: #a7b397;
+  --neutral-500: #778868;
+  --neutral-400: #556246;
+  --neutral-300: #3a4830;
+  --neutral-200: #050605;
+  --neutral-100: #061106;
+
+  /* Text colors for dark mode */
+  --text: #dad7cd;
+  --text-dim: #a3b18a;
+  --text-alt: #151915;
+  --text-alt-dim: #0d0e0d6b;
+  --bg: var(--neutral-100);
+  --bg-alt: var(--neutral-200);
+
+  /* Forest Sand Dark Refinements */
+  --text-code: #d3d7cf; /* Light code text */
+  --text-string: #b58900; /* Solarized Yellow */
+  --text-number: #d33682; /* Solarized Magenta */
+  --text-keyword: #2aa198; /* Solarized Cyan */
+  --text-comment: #586e75; /* Solarized base01 */
+  --text-function: #268bd2; /* Solarized Blue - refined to a more fitting color */
+  --text-constant: #cb4b16; /* Solarized Orange */
+  --bg-code: #002b36; /* Solarized base03 */
+  --border-code: #073642; /* Solarized base02 */
+  --accent-emphasis: #859900; /* Solarized Green */
+  --text-emphasis: #839496; /*solarized base00*/
+
+  --text-function: #a08040; /* Muted yellow/brown */
 }

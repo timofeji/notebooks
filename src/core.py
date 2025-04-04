@@ -19,15 +19,15 @@ class PathAwareEnvironment(jinja2.Environment):
         
     def get_template(self, name, *args, **kwargs):
         template = super().get_template(name, *args, **kwargs)
-        template.globals['url_for_static'] = self.url_for_static
-        template.globals['url_for_page'] = self.url_for_page
+        template.globals['url_static'] = self.url_static
+        template.globals['url_page'] = self.url_page
         return template
         
-    def url_for_static(self, path):
+    def url_static(self, path):
         prefix = '../' * self.current_page_depth
         return f"{prefix}{path}"
         
-    def url_for_page(self, path):
+    def url_page(self, path):
         prefix = '../' * self.current_page_depth
         return f"{prefix}{path}"
 
@@ -38,3 +38,31 @@ env = PathAwareEnvironment(
 )
 
 
+
+# class HTMLCard:
+#     def __init__(self, image_path, title, description):
+#         self.image_path = image_path
+#         self.title = title
+#         self.description = description
+    
+#     def _repr_html_(self):
+#         # Generates HTML with inline styling for simplicity
+#         return f"""
+#         <div style="
+#             border: 1px solid #ddd;
+#             border-radius: 8px;
+#             padding: 15px;
+#             margin: 10px;
+#             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+#             max-width: 300px;
+#         ">
+#             <img src="{self.image_path}" 
+#                  style="
+#                     width: 100%;
+#                     height: auto;
+#                     border-radius: 4px;
+#                  ">
+#             <h3 style="margin: 10px 0; color: #333;">{self.title}</h3>
+#             <p style="color: #666; font-size: 0.9em;">{self.description}</p>
+#         </div>
+#         """
