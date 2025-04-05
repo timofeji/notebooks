@@ -64,6 +64,19 @@ body[data-theme="dark"] {
 
 
 body[data-theme="light"] {
+  --neutral-100: #f0f0e8; 
+  --neutral-200: #e0e0d8;
+  --neutral-300: #ccd5c4;
+  --neutral-400: #a7b397;
+  --neutral-500: #778868;
+  --neutral-600: #556246;
+  --neutral-700: #3a4830;
+  --neutral-800: #2c3b2d;
+  --neutral-900: #1c2a1d;
+
+
+
+
   --accent-main: #e5e8e0;
   --accent-dark: #2c3b2d;
   --accent-gray: #3a5a40;
@@ -74,15 +87,7 @@ body[data-theme="light"] {
   --accent-highlight: #80b192;
   --accent-alt: #bb5a41;
   --accent-alt2: #e76f51;
-  --neutral-100: #f6f7f4;
-  --neutral-200: #e5e8e0;
-  --neutral-300: #ccd5c4;
-  --neutral-400: #a7b397;
-  --neutral-500: #778868;
-  --neutral-600: #556246;
-  --neutral-700: #3a4830;
-  --neutral-800: #2c3b2d;
-  --neutral-900: #1c2a1d;
+
   --text: #2c3b2d;
   --text-dim: #778868;
   --text-alt: #e5e8e0;
@@ -91,7 +96,7 @@ body[data-theme="light"] {
   --bg-alt: var(--neutral-200);
 
 
-  --accent-main: #a83c3c;
+  --alt: #5a5044;
 
   /* Forest Sand Light Refinements */
   --text-code: #224422; /*deeper code text*/
@@ -110,12 +115,21 @@ body[data-theme="light"] {
   --text-function: #8f5902; /* A more muted, earthy function color */
   --text-keyword: #006400; /* A deeper, forest green for keywords */
   --text-code: #1a1a1a;  /* Darker code text for improved contrast */
-  --neutral-100: #f0f0e8; /* slightly darker background */
-  --neutral-200: #e0e0d8; /* slightly darker alt background */
+
 }
 
 body[data-theme="dark"] {
-  --accent-main: #6d1b1b;
+  --neutral-100: #061106;
+  --neutral-200: #050605;
+  --neutral-300: #292e25;
+  --neutral-400: #3c4631;
+  --neutral-500: #5e724c;
+  --neutral-600: #a7b397;
+  --neutral-700: #ccd5c4;
+  --neutral-800: #e5e8e0;
+  --neutral-900: #f6f7f4;
+
+  --accent-main: #556246;
   --accent-dark: #dad7cd;
   --accent-gray: #a3b18a;
   --accent-light: #588157;
@@ -126,24 +140,24 @@ body[data-theme="dark"] {
   --accent-alt: #e76f51; /* Keeping vibrant */
   --accent-alt2: #bb5a41;
 
-  /* Neutral palette inverted */
-  --neutral-900: #f6f7f4;
-  --neutral-800: #e5e8e0;
-  --neutral-700: #ccd5c4;
-  --neutral-600: #a7b397;
-  --neutral-500: #778868;
-  --neutral-400: #556246;
-  --neutral-300: #3a4830;
-  --neutral-200: #050605;
-  --neutral-100: #061106;
+
+  --alt: #6d1b1b;
+
+
+
+
 
   /* Text colors for dark mode */
-  --text: #dad7cd;
+  --text: #afb4ad;
   --text-dim: #a3b18a;
   --text-alt: #151915;
   --text-alt-dim: #0d0e0d6b;
   --bg: var(--neutral-100);
   --bg-alt: var(--neutral-200);
+
+
+  --text-math: #dad8d8; /* Light code text */
+  --text-blockquote: #333; /* Light code text */
 
   /* Forest Sand Dark Refinements */
   --text-code: #d3d7cf; /* Light code text */

@@ -67,14 +67,11 @@ def generate_notebook_page(n_src_file):
     
     html_exporter.environment.globals['url'] = '../'
 
-    print(f"Generating NoteBook: {n_src_file}")
     notebook_html, resources = html_exporter.from_notebook_node(notebook_content)
     
     post_settings = resources['post_settings']
     
-    output_dir = Path(os.path.join( OUTPUT_DIR, post_settings['category']))
-    if not output_dir .exists():
-        output_dir.mkdir(parents=True, exist_ok=True)
+
     
 
     if not isinstance(post_settings, dict):
@@ -84,9 +81,14 @@ def generate_notebook_page(n_src_file):
 
     output_file = Path( f"{n_src_file.stem}.html")
     post_settings['url'] = f"{post_settings['category']}/{output_file.stem}.html" if post_settings['category'] else f"{output_file.stem}.html"
+
+    output_dir = Path(os.path.join( OUTPUT_DIR, post_settings['category']))
+    if not output_dir .exists():
+        output_dir.mkdir(parents=True, exist_ok=True)
     
+    print(f"Writing NoteBook file: {output_dir / output_file}")
     # Save the rendered HTML
-    with open(output_file, "w", encoding="utf-8") as f:
+    with open(output_dir / output_file, "w", encoding="utf-8") as f:
         f.write(notebook_html)
 
     return output_file, post_settings

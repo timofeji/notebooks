@@ -91,3 +91,4 @@ earthpunk_plot_style = {
 }
 
 plt.style.use(earthpunk_plot_style)
+

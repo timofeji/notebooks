@@ -160,10 +160,6 @@ def run_build(files_to_build=None):
             settings['image'] = f'static/{img_id}'
             nb_page_settings.append(settings)
 
-
-
-            
-
     # Generate homepage and other pages
     generate_website(nb_sources, nb_page_settings)
 
@@ -275,13 +271,13 @@ import websockets
 async def start_watcher():
     """ Start the file watcher and WebSocket server properly """
     # Create and start the WebSocket server first
-    server = await websockets.serve(websocket_handler, "localhost", 8765)
+    # server = await websockets.serve(websocket_handler, "localhost", 8765)
     print("WebSocket server running on ws://localhost:8765")
 
     # Start the file checking loop in the background
     asyncio.create_task(watch_for_changes())
-    loop = asyncio.get_event_loop()
-    loop.run_forever()  # Keep the loop alive
+    # loop = asyncio.get_event_loop()
+    # loop.run_forever()  # Keep the loop alive
 
     
 

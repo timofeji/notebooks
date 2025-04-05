@@ -2,8 +2,6 @@
 {% from 'mathjax.html.j2' import mathjax %}
 {% from 'jupyter_widgets.html.j2' import jupyter_widgets %}
 
-
-
 {%- block header -%}
 <!DOCTYPE html>
 <html>
@@ -146,7 +144,6 @@
 </html>
 {% endblock footer %}
 
-
 {% block input_group -%}
 {%- set is_view_only = "hide_code" in cell.metadata.get("tags", []) -%}
 {% if not is_view_only  %}
@@ -155,3 +152,22 @@
 </div>
 {% endif %}
 {% endblock input_group %}
+
+
+{% block markdowncell scoped %}
+<div {{ cell_id_anchor(cell) }} class="cell border-box-sizing text_cell rendered{{ celltags(cell) }}">
+{%- if resources.global_content_filter.include_input_prompt-%}
+    {{ self.empty_in_prompt() }}
+{%- endif -%}
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+{%- if resources.should_sanitize_html %}
+{%- set html_value=cell.source  | markdown2html | strip_files_prefix | clean_html -%}
+{%- else %}
+{%- set html_value=cell.source  | markdown2html | strip_files_prefix -%}
+{%- endif %}
+{{ html_value }}
+</div>
+</div>
+</div>
+{%- endblock markdowncell %}
