@@ -17,7 +17,7 @@ from nbconvert.exporters.html import HTMLExporter
 from jinja2 import FileSystemLoader
 from traitlets.config import Config
 
-from nb_processors import PostSettingsPreprocessor
+from nb_processors import * 
 
 TEMPLATE_FILE = 'post.html'
 
@@ -25,22 +25,16 @@ TEMPLATE_FILE = 'post.html'
 
 c = Config()
 nb_loader = FileSystemLoader(os.path.join(os.path.dirname(__file__), 'templates'))
-nb_env = PathAwareEnvironment(
-    loader=nb_loader,
-    autoescape=jinja2.select_autoescape(['html', 'xml'])
-)
-
-
 
 html_exporter = HTMLExporter(
     config=c, 
-    extra_loaders=[nb_loader],
-    environment = nb_env
+    extra_loaders=[nb_loader]
     )
 html_exporter.template_file = TEMPLATE_FILE
 html_exporter.exclude_input_prompt = True  
 html_exporter.exclude_output_prompt = True  
 html_exporter.register_preprocessor(PostSettingsPreprocessor(), enabled=True)
+html_exporter.register_preprocessor(MatplotlibToInteractivePreprocessor(), enabled=True)
 html_exporter.mathjax_url = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"
 
 
