@@ -34,7 +34,6 @@ html_exporter.template_file = TEMPLATE_FILE
 html_exporter.exclude_input_prompt = True  
 html_exporter.exclude_output_prompt = True  
 html_exporter.register_preprocessor(PostSettingsPreprocessor(), enabled=True)
-html_exporter.register_preprocessor(MatplotlibToInteractivePreprocessor(), enabled=True)
 html_exporter.mathjax_url = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML"
 
 
