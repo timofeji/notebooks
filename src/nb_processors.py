@@ -1,11 +1,7 @@
 import base64
-import io
-import json
 from nbconvert.preprocessors import Preprocessor
 import matplotlib.pyplot as plt
 import numpy as np
-import plotly
-import plotly.graph_objs as go
 from IPython.display import display, HTML
 
 
