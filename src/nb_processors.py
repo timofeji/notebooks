@@ -2,7 +2,6 @@ import base64
 from nbconvert.preprocessors import Preprocessor
 import matplotlib.pyplot as plt
 import numpy as np
-from IPython.display import display, HTML
 
 
 class PostSettingsPreprocessor(Preprocessor):
