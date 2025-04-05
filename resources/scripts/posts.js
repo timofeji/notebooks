@@ -141,33 +141,32 @@ function setupIntersectionObserver(anchorElements) {
   });
 }
 
-function handleScroll(e) {
-
+let handleScroll = (e) => {
   console.log(e);
   // This will be handled by the Intersection Observer
   // but we keep this for browsers that don't support it
-  if (!('IntersectionObserver' in window)) {
+  if (!("IntersectionObserver" in window)) {
     const scrollPosition = window.scrollY + 100; // offset for better UX
-    
+
     // Find the section that is currently in view
-    const anchorElements = document.querySelectorAll('[id]');
+    const anchorElements = document.querySelectorAll("[id]");
     let currentSection = null;
-    
-    anchorElements.forEach(element => {
+
+    anchorElements.forEach((element) => {
       const elementTop = element.offsetTop;
       const elementHeight = element.offsetHeight;
-      
+
       if (scrollPosition >= elementTop && scrollPosition < elementTop + elementHeight) {
         currentSection = element.id;
       }
     });
-    
+
     // Update the current section display
     if (currentSection) {
       updateCurrentSectionDisplay(currentSection);
     }
   }
-}
+};
 
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -153,6 +153,20 @@
 {% endblock input_group %}
 
 
+
+{% block output %}
+  {% if 'inline' in cell.metadata.tags %}
+    <span class="output_area inline-output-area">
+      {{ super() }}
+    </span>
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock output %}
+
+
+
+
 {% block markdowncell scoped %}
 <div {{ cell_id_anchor(cell) }} class="cell border-box-sizing text_cell rendered{{ celltags(cell) }}">
 {%- if resources.global_content_filter.include_input_prompt-%}

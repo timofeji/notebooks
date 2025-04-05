@@ -129,13 +129,13 @@ body[data-theme="dark"] {
   --neutral-800: #e5e8e0;
   --neutral-900: #f6f7f4;
 
-  --accent-main: #556246;
+  --accent-main: rgb(85, 98, 70);
   --accent-dark: #dad7cd;
   --accent-gray: #a3b18a;
   --accent-light: #588157;
   --accent-light-2: #3a5a40;
   --accent-solarized: #0d0e0c7a;
-  --accent-active: #e9c46a; /* Keeping active color visible */
+  --accent-active: #f1d29e; /* Keeping active color visible */
   --accent-highlight: #a7b397; /* Adjusted for dark mode */
   --accent-alt: #e76f51; /* Keeping vibrant */
   --accent-alt2: #bb5a41;
@@ -162,7 +162,7 @@ body[data-theme="dark"] {
   /* Forest Sand Dark Refinements */
   --text-code: #d3d7cf; /* Light code text */
   --text-string: #c8965d; /* Solarized Yellow */
-  --text-number: #9b4747; /* Solarized Magenta */
+  --text-number: rgb(155, 71, 71); /* Solarized Magenta */
   --text-keyword: #778868; /* Solarized Cyan */
   --text-comment: #586e75; /* Solarized base01 */
   --text-function: #268bd2; /* Solarized Blue - refined to a more fitting color */
