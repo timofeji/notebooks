@@ -124,9 +124,8 @@ def run_build(files_to_build=None):
     if not OUTPUT_STYLES_DIR.exists():
         OUTPUT_STYLES_DIR.mkdir(parents=True)
 
-    OUTPUT_STATIC_DIR = OUTPUT_DIR / 'static'
-    if not OUTPUT_STATIC_DIR.exists():
-        OUTPUT_STATIC_DIR.mkdir(parents=True)
+    if not OUTPUT_IMG_DIR.exists():
+        OUTUT_IMG_DIR.mkdir(parents=True)
 
     OUTPUT_SCRIPTS_DIR = OUTPUT_DIR / 'scripts'
     if not OUTPUT_SCRIPTS_DIR.exists():
@@ -142,7 +141,7 @@ def run_build(files_to_build=None):
                 dest_path = os.path.join(OUTPUT_SCRIPTS_DIR, filename)
                 shutil.copy2(src_path, dest_path) 
             elif filename.endswith(( ".svg", ".png", ".jpg" )) :
-                dest_path = os.path.join(OUTPUT_STATIC_DIR, filename)
+                dest_path = os.path.join(OUTPUT_IMG_DIR, filename)
                 shutil.copy2(src_path, dest_path) 
 
     
@@ -155,9 +154,9 @@ def run_build(files_to_build=None):
 
             img_id = str(uuid.uuid4())
             src_path = os.path.join(NOTEBOOK_DIR,nb_path, Path(settings['image']))
-            dest_path = os.path.join(OUTPUT_STATIC_DIR, img_id)
+            dest_path = os.path.join(OUTPUT_IMG_DIR, img_id)
             shutil.copy2(src_path, dest_path) 
-            settings['image'] = f'static/{img_id}'
+            settings['image'] = f'static/img/{img_id}'
             nb_page_settings.append(settings)
 
     # Generate homepage and other pages
