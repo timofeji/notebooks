@@ -125,7 +125,7 @@ def run_build(files_to_build=None):
         OUTPUT_STYLES_DIR.mkdir(parents=True)
 
     if not OUTPUT_IMG_DIR.exists():
-        OUTUT_IMG_DIR.mkdir(parents=True)
+        OUTPUT_IMG_DIR.mkdir(parents=True)
 
     OUTPUT_SCRIPTS_DIR = OUTPUT_DIR / 'scripts'
     if not OUTPUT_SCRIPTS_DIR.exists():
