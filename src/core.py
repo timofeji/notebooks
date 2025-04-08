@@ -7,7 +7,7 @@ RESOURCES_DIR = Path('./resources')  # Path to the custom nbconvert template
 TEMPLATES_DIR= Path('./resources/templates')  # Path to the CSS file
 STYLE_DIR = Path('./resources/styles')  # Path to the CSS file
 SCRIPTS_DIR = Path('./resources/scripts')  # Path to the CSS file
-OUTUT_IMG_DIR = OUTPUT_DIR / 'static/img'
+OUTPUT_IMG_DIR = OUTPUT_DIR / 'static/img'
 
 # Custom Jinja2 environment with path utilities
 class PathAwareEnvironment(jinja2.Environment):
